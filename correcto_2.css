@@ -1,0 +1,517 @@
+/* ====================== VISUALIZADOR DE NECESIDADES ====================== */
+
+#necesidades .dashboard {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+#necesidades .dashboard-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#necesidades #titulo-visualizador {
+  font-size: 2.2rem;
+  color: #134a2c;
+  margin: 0;
+  font-weight: 550;
+}
+
+/* Contenedor principal */
+#necesidades .dashboard-content {
+  display: flex;
+  gap: 20px;
+  height: 78vh; /* Ajusta según necesites */
+  min-height: 650px;
+}
+
+/* MAPA - 80% del espacio */
+#necesidades .dashboard-mapa {
+  flex: 4; /* Más espacio para el mapa */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  background: #fff;
+}
+
+#mapa-necesidades {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
+
+/* Control de capas de Leaflet */
+#panel-capas .leaflet-control-layers {
+  width: 100%;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+#panel-capas .leaflet-control-layers-toggle {
+  display: none;
+}
+
+#panel-capas .leaflet-control-layers-list {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+/* Botón volver */
+#necesidades .btn-home {
+  margin: 25px auto 0;
+  display: block;
+}
+
+/* Contenedor de la leyenda */
+.legend {
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  min-width: 140px; /* Asegura un ancho mínimo para que no se corte el texto */
+}
+
+.legend h4 {
+  margin: 0 0 10px 0;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* Cada fila de la leyenda (Icono + Texto) */
+.legend-row {
+  display: flex; /* Alinea icono y texto en línea */
+  align-items: center; /* Los centra verticalmente */
+  margin-bottom: 6px; /* Espacio entre filas */
+  font-size: 0.9rem;
+}
+
+/* El cuadro de color */
+.legend-row i {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px; /* Espacio entre el cuadro y el texto */
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  display: inline-block;
+}
+
+.legend-row i {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* ====================== REGIONES====================== */
+
+/* ======================================
+   MENU PRINCIPAL
+====================================== */
+
+.menu-oferta {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  list-style: none;
+  padding: 0;
+  margin: 25px 0;
+  position: relative;
+  z-index: 9999;
+}
+
+/* ======================================
+   ÁREAS
+====================================== */
+
+.menu-area {
+  position: relative;
+}
+.menu-area-title {
+  color: #2f3a2f;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+  padding: 8px 0;
+}
+
+.menu-area-title:hover {
+  color: #b08b3e;
+}
+
+/* ======================================
+   MUNICIPIOS
+====================================== */
+
+.menu-municipios {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding-top: 8px;
+  min-width: 220px;
+  list-style: none;
+  z-index: 99999;
+}
+
+.menu-area:hover > .menu-municipios {
+  display: block;
+}
+
+/* ======================================
+   MUNICIPIO ITEM
+====================================== */
+
+.menu-municipio {
+  position: relative;
+  padding: 6px 0;
+}
+
+.menu-municipio-title {
+  color: #4d5a4d;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  white-space: nowrap;
+}
+
+.menu-municipio-title:hover {
+  color: #b08b3e;
+  transform: translateX(3px);
+}
+
+/* ======================================
+   CARRERAS
+====================================== */
+
+.menu-carreras {
+  display: none;
+  position: absolute;
+  top: -5px;
+  left: 90%;
+  padding-left: 5px;
+  min-width: 280px;
+  list-style: none;
+  z-index: 99999;
+}
+
+.menu-municipio:hover > .menu-carreras {
+  display: block;
+}
+
+/* ======================================
+   ITEMS CARRERAS
+====================================== */
+
+.menu-carreras li {
+  color: #687768;
+  font-size: 14px;
+  padding: 6px 0;
+  cursor: pointer;
+  transition: 0.2s ease;
+  white-space: nowrap;
+}
+
+.menu-carreras li:hover {
+  color: #b08b3e;
+  transform: translateX(3px);
+}
+
+/* ======================================
+   MINI VISUALIZADOR OFERTA
+====================================== */
+
+.oferta-dashboard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* MAPA */
+
+/* PANEL LATERAL */
+
+.mini-panel-oferta {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 230px;
+  max-height: 85%;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 16px;
+  z-index: 999;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* TITULOS */
+
+.mini-panel-oferta h4 {
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #134a2c;
+  font-weight: 700;
+}
+
+/* ITEMS CAPAS */
+
+.capa-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: #3d3d3d;
+}
+
+/* LEYENDA */
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.legend-color {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+}
+
+/* ESTILO MAPA */
+
+.leaflet-tile-pane {
+  filter: saturate(0.75) brightness(1.02) contrast(0.95);
+}
+
+/* POPUPS */
+
+.leaflet-popup-content-wrapper {
+  border-radius: 14px;
+}
+
+.leaflet-popup-content {
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+}
+
+/* =========================================================
+   ESTILOS CLONADOS PARA LA REGIÓN SUR (Igual a Oriente)
+   ========================================================= */
+
+/* 3. Leyenda dinámica nativa del Sur (Mismo diseño que el visualizador principal) */
+#leyenda-dinamica-sur {
+  background: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  font-family: "DM Sans", sans-serif;
+  color: #333;
+}
+
+#leyenda-dinamica-sur h4 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: #134a2c;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+/* =====================================================
+   OFERTA REGIONAL
+===================================================== */
+
+.oferta-wrapper {
+  width: 98%;
+  max-width: 1800px;
+  height: 88vh;
+  min-height: 820px;
+  margin: 15px auto 30px auto;
+}
+
+/* CONTENEDOR GENERAL */
+.oferta-dashboard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 22px;
+  background: white;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* MAPA */
+#mapa-reutilizable {
+  width: 100%;
+  height: 100%;
+  min-height: 820px;
+  z-index: 1;
+}
+
+/* ==================================================
+   CONTROL DE CAPAS / SIMBOLOGÍA
+================================================== */
+
+.leaflet-control-container .leaflet-top,
+.leaflet-control-container .leaflet-right {
+  z-index: 99999 !important;
+}
+
+.leaflet-control-layers {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-radius: 10px !important;
+  padding: 10px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  font-family: "DM Sans", sans-serif !important;
+}
+
+#leyenda-container-regional {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99999;
+}
+
+/* ==================================================
+   CONTROL de Fichas
+================================================== */
+
+/* =========================================================
+   VISTA POR DEFECTO (IMÁGENES COMPACTAS A MITAD DE PANTALLA)
+   ========================================================= */
+
+.default-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px 0 50px 0;
+}
+
+/* Contenedor principal que ocupa buen porcentaje de la pantalla */
+.default-images-container {
+  display: flex;
+  flex-direction: row; /* Lado a lado */
+  justify-content: center;
+  align-items: stretch; /* Hace que ambas columnas tengan la misma altura base */
+  gap: 60px; /* Separación amplia y elegante entre las dos regiones */
+  width: 95%; /* Aprovecha casi todo el ancho disponible */
+  max-width: 1200px; /* Tope para que no se deforme en pantallas gigantes */
+  margin: 0 auto;
+}
+
+/* Cada bloque es exactamente igual al otro (50% / 50%) */
+.default-image-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px; /* Espacio entre el título y la imagen */
+}
+
+/* Las imágenes grandes y simétricas */
+.default-image-card img {
+  width: 100%; /* Toma todo el ancho de su mitad de pantalla */
+  max-height: 700px; /* Altura generosa. Puedes subirle a 450px o bajarle a 350px si lo ves necesario */
+  object-fit: contain; /* IMPORTANTE: 'contain' evita que se corten textos o pedazos de tu mapa */
+  background-color: #fbfbfb; /* Fondo tenue por si la imagen tiene un formato diferente */
+  border-radius: 12px; /* Bordes suaves */
+}
+
+/* Efecto al pasar el mouse */
+.default-image-card img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================================================
+   MENÚ MINIMALISTA SITUACIÓN REGIONAL
+   ========================================================= */
+
+.dashboard-main-title {
+  text-align: center;
+  color: #134a2c;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Contenedor centralizado para los dos títulos */
+.menu-minimalista-container {
+  display: flex;
+  justify-content: center;
+  gap: 80px; /* Separación entre Oriente y Sur */
+  margin-bottom: 30px;
+}
+
+/* Cada bloque (Título + Lista) */
+.menu-minimalista-item {
+  position: relative; /* Clave para que la lista flote debajo de este texto */
+  display: inline-block;
+}
+
+/* El texto principal ("Región Oriente ▼") */
+.menu-minimalista-titulo {
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  padding-bottom: 15px; /* Espacio invisible para no perder el hover al bajar el mouse */
+  display: block;
+}
+
+.menu-minimalista-titulo small {
+  font-size: 10px;
+  color: #888;
+  margin-left: 5px;
+}
+
+/* La lista desplegable oculta por defecto */
+.menu-minimalista-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%; /* Justo debajo del texto */
+  left: 0;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08); /* Sombra muy suave y limpia */
+  padding: 10px 0;
+  margin: 0;
+  list-style: none;
+  z-index: 999; /* Asegura que flote sobre la imagen */
+  border-radius: 4px;
+}
+
+/* Magia: Mostrar la lista al pasar el mouse por el contenedor */
+.menu-minimalista-item:hover .menu-minimalista-dropdown {
+  display: block;
+}
+
+/* Estilo de los municipios (Limpio y sin cajas pesadas) */
+.menu-minimalista-dropdown li {
+  color: #000000; /* Color sutil azulado */
+  padding: 8px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Al pasar el mouse por un municipio */
+.menu-minimalista-dropdown li:hover {
+  background-color: #fcfcfc;
+  color: #000000; /* Dorado institucional al hacer hover */
+}
