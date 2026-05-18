@@ -1,0 +1,871 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Articulación Social y Universitaria - UAEMéx</title>
+
+    <!-- Preconexiones para optimizar el rendimiento de recursos externos -->
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Estilos externos -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap"
+    />
+    <link rel="stylesheet" href="correcto.css" />
+    <link rel="stylesheet" href="correcto_2.css" />
+    =
+    <!-- Clases utilitarias extraídas para limpiar el HTML (DRY) -->
+    <style>
+      .text-center {
+        text-align: center;
+      }
+      .text-dark-green {
+        color: #134a2c;
+      }
+      .btn-centered {
+        display: block;
+        margin: 25px auto 0;
+      }
+      .btn-centered.mt-30 {
+        margin-top: 30px;
+      }
+      .btn-centered.mt-40 {
+        margin-top: 40px;
+      }
+      .img-fluid {
+        width: 100%;
+      }
+      .py-20 {
+        padding: 20px 0;
+      }
+
+      /* Layouts repetitivos en secciones de investigación/patentes/labs */
+      .geo-wrapper-flex {
+        display: flex;
+        gap: 20px;
+        height: 600px;
+      }
+      .map-flex-main {
+        flex: 1.5;
+        min-height: 500px;
+      }
+      .list-flex-sidebar {
+        flex: 1;
+        overflow-y: auto;
+        height: 600px;
+        padding-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ================= SECCIÓN: HOME / HERO ================= -->
+    <section id="home" class="hero-section active-section">
+      <!-- HEADER -->
+      <header class="hero-header">
+        <img src="img/escudo.jpg" class="logo-principal" alt="Logo UAEMex" />
+
+        <!-- MENÚ PRINCIPAL -->
+
+        <nav aria-label="Menú principal">
+          <ul class="main-menu-nav menu-principal">
+            <!-- 1. Capacidades Estratégicas -->
+            <li class="menu-item">
+              <span class="menu-title"
+                >Capacidades Estratégicas de la Universidad</span
+              >
+              <ul class="dropdown">
+                <li class="sub-item">
+                  <span class="sub-title">Infraestructura para la ciencia</span>
+                  <ul class="sub-dropdown">
+                    <li onclick="openModule('laboratorios')">
+                      Laboratorios para la ciencia
+                    </li>
+                  </ul>
+                </li>
+                <li class="sub-item">
+                  <span class="sub-title">Ciencia Universitaria</span>
+                  <ul class="sub-dropdown">
+                    <li onclick="openModule('investigacion')">Investigación</li>
+                    <li onclick="openModule('patentes')">
+                      Protección Industrial
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            <!-- 2. Contexto Regional -->
+            <li class="menu-item">
+              <span class="menu-title">Contexto Regional</span>
+              <ul class="dropdown">
+                <!-- Región Oriente -->
+                <li class="sub-item">
+                  <span class="sub-title">Región Oriente</span>
+                  <ul class="sub-dropdown">
+                    <li class="sub-item-level3">
+                      <span class="sub-title"
+                        >Capacidades estratégicas regional</span
+                      >
+                      <ul class="sub-dropdown-level3">
+                        <li onclick="cargarMapaRegion('oriente')">
+                          Programa Educativo
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="sub-item-level3">
+                      <span class="sub-title">Situación Regional</span>
+                      <ul class="sub-dropdown-level3">
+                        <li onclick="cargarSituacionRegional('Amecameca')">
+                          C.U. Amecameca
+                        </li>
+                        <li onclick="cargarSituacionRegional('Chalco')">
+                          C.U. Chalco
+                        </li>
+                        <li onclick="cargarSituacionRegional('Chimalhuacán')">
+                          C.U. Chimalhuacán
+                        </li>
+                        <li onclick="cargarSituacionRegional('Texcoco')">
+                          C.U. Texcoco
+                        </li>
+                        <li onclick="cargarSituacionRegional('Nezahualcóyotl')">
+                          C.U. Nezahualcóyotl
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <!-- Región Sur -->
+                <li class="sub-item">
+                  <span class="sub-title">Región Centro-Sur</span>
+                  <ul class="sub-dropdown">
+                    <li class="sub-item-level3">
+                      <span class="sub-title"
+                        >Capacidades estratégicas regional</span
+                      >
+                      <ul class="sub-dropdown-level3">
+                        <li onclick="cargarMapaRegion('sur')">
+                          Programa Educativo
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="sub-item-level3">
+                      <span class="sub-title">Situación Regional</span>
+                      <ul class="sub-dropdown-level3">
+                        <li onclick="cargarSituacionRegional('Temascaltepec')">
+                          C.U. Temascaltepec
+                        </li>
+                        <li onclick="cargarSituacionRegional('Tenancingo')">
+                          C.U. Tenancingo
+                        </li>
+                        <li onclick="cargarSituacionRegional('Atlacomulco')">
+                          C.U. Atlacomulco
+                        </li>
+                        <li
+                          onclick="
+                            cargarSituacionRegional('Santiago Tianguistenco')
+                          "
+                        >
+                          C.U. Santiago Tianguistenco
+                        </li>
+                        <li
+                          onclick="cargarSituacionRegional('Ixtapan de la Sal')"
+                        >
+                          U.A. Ixtapan de la Sal
+                        </li>
+                        <li onclick="cargarSituacionRegional('Tejupilco')">
+                          U.A. Tejupilco
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            <!-- 3. Programa Universitario -->
+            <li class="menu-item">
+              <span class="menu-title">Comunidades en transformación</span>
+
+              <ul class="dropdown">
+                <li onclick="openModule('agua')">
+                  Nodo para la Sustentabilidad Hídrica
+                </li>
+
+                <li onclick="openModule('digital')">Nodo Creativo Digital</li>
+
+                <li onclick="openModule('alimenticio')">Nodo Alimentario</li>
+              </ul>
+            </li>
+
+            <!-- 4. Necesidades Sociales -->
+            <li class="menu-item">
+              <span class="menu-title"
+                >Necesidades Sociales del Estado de México</span
+              >
+              <ul class="dropdown">
+                <li onclick="openModule('necesidades')">
+                  Visualizador de Necesidades en el EdoMex
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- CONTENIDO PRINCIPAL -->
+      <div class="hero-content">
+        <div class="hero-text">
+          <h2>Cartografía<br />Institucional</h2>
+          <p>
+            Un espacio para consulta de necesidades territoriales y capacidades
+            universitarias.
+          </p>
+        </div>
+        <div class="hero-image">
+          <img
+            id="imagen-cambiante"
+            src="img/map_regiones.png"
+            alt="Mapa institucional representativo"
+          />
+        </div>
+      </div>
+
+      <!-- DECORACIÓN -->
+      <div class="hero-decor">
+        <img src="img/decoracion.png" alt="" aria-hidden="true" />
+      </div>
+
+      <!-- MODAL INFORMATIVO -->
+      <div id="info-modal" class="modal-overlay" style="display: none">
+        <div class="modal-content" role="dialog" aria-labelledby="modal-title">
+          <button
+            type="button"
+            class="close-modal"
+            onclick="closeInfoModal()"
+            aria-label="Cerrar modal"
+          >
+            &times;
+          </button>
+          <h2 id="modal-title" class="modal-header-uaem">
+            Comunidades en Transformación
+          </h2>
+
+          <div class="modal-body-organizado">
+            <p class="texto-principal">
+              Creación de Redes de Investigación integradas en
+              <strong>NODOS Sociales</strong> que fortalecen los conocimientos
+              generados para el bienestar social en temas específicos sobre los
+              indicadores de acceso a los servicios básicos de la vivienda.
+            </p>
+          </div>
+
+          <div class="modal-footer-botones">
+            <button
+              type="button"
+              class="btn-nodo hídrico"
+              onclick="
+                closeInfoModal();
+                openModule('agua');
+              "
+            >
+              Nodo Para la Sustentabilidad Hídrica
+            </button>
+            <button
+              type="button"
+              class="btn-nodo digital"
+              onclick="
+                closeInfoModal();
+                openModule('digital');
+              "
+            >
+              Nodo Creativo Digital
+            </button>
+            <button
+              type="button"
+              class="btn-nodo alimenticio"
+              onclick="
+                closeInfoModal();
+                openModule('alimenticio');
+              "
+            >
+              Nodo Alimentario
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECCIÓN: OFERTA EDUCATIVA ================= -->
+    <section
+      id="oferta-regional"
+      class="section-container"
+      style="display: none"
+    >
+      <div class="encabezado-institucional">
+        <img src="img/escudo.jpg" alt="Logo UAEMex" loading="lazy" />
+      </div>
+
+      <h2 id="titulo-oferta" class="text-center text-dark-green">
+        Oferta Educativa
+      </h2>
+
+      <div class="filter-bar">
+        <ul id="menu-oferta-dinamico" class="menu-oferta"></ul>
+      </div>
+
+      <div class="visual-container oferta-dashboard">
+        <div id="mapa-reutilizable" class="map-frame"></div>
+        <div id="leyenda-container"></div>
+      </div>
+
+      <button type="button" class="btn-home btn-centered" onclick="goHome()">
+        Volver al Menú
+      </button>
+    </section>
+
+    <!-- ================= SECCIÓN: CONTEXTO REGIONAL ================= -->
+    <section id="situacion" class="section-container" style="display: none">
+      <div class="encabezado-institucional">
+        <img src="img/escudo.jpg" alt="Logo UAEMex" loading="lazy" />
+      </div>
+
+      <div class="dashboard-contexto">
+        <h2 id="titulo-situacion" class="dashboard-main-title">
+          Contexto Regional
+        </h2>
+
+        <div class="menu-minimalista-container">
+          <div class="menu-minimalista-item">
+            <span class="menu-minimalista-titulo"
+              >Región Oriente <small>▼</small></span
+            >
+            <ul class="menu-minimalista-dropdown">
+              <li onclick="cargarSituacionRegional('Amecameca')">Amecameca</li>
+              <li onclick="cargarSituacionRegional('Chalco')">Chalco</li>
+              <li onclick="cargarSituacionRegional('Chimalhuacán')">
+                Chimalhuacán
+              </li>
+              <li onclick="cargarSituacionRegional('Texcoco')">Texcoco</li>
+              <li onclick="cargarSituacionRegional('Nezahualcóyotl')">
+                Nezahualcóyotl
+              </li>
+            </ul>
+          </div>
+          <div class="menu-minimalista-item">
+            <span class="menu-minimalista-titulo"
+              >Región Centro-Sur <small>▼</small></span
+            >
+            <ul class="menu-minimalista-dropdown">
+              <li onclick="cargarSituacionRegional('Temascaltepec')">
+                Temascaltepec
+              </li>
+              <li onclick="cargarSituacionRegional('Tenancingo')">
+                Tenancingo
+              </li>
+              <li onclick="cargarSituacionRegional('Atlacomulco')">
+                Atlacomulco
+              </li>
+              <li onclick="cargarSituacionRegional('Santiago Tianguistenco')">
+                Santiago Tianguistenco
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ficha-display-container">
+          <div id="wrapper-imagen-ficha" class="ficha-viewer">
+            <img
+              id="imagen-ficha-actual"
+              src=""
+              alt="Ficha informativa"
+              class="img-fluid"
+              style="display: none"
+              loading="lazy"
+            />
+            <div class="controles-ficha">
+              <button id="btn-prev-ficha" onclick="anteriorFicha()">⟨</button>
+
+              <button id="btn-next-ficha" onclick="siguienteFicha()">⟩</button>
+            </div>
+
+            <div id="placeholder-ficha" class="default-view">
+              <div class="default-images-container">
+                <!-- REGIÓN ORIENTE -->
+                <div class="default-image-card">
+                  <img
+                    src="img/Imagenes_ficahas/9.png"
+                    alt="Información Región Oriente"
+                    loading="lazy"
+                  />
+                </div>
+
+                <div class="default-image-card">
+                  <img
+                    src="img/Imagenes_ficahas/9.png"
+                    alt="Información adicional Oriente"
+                    loading="lazy"
+                  />
+                </div>
+
+                <!-- REGIÓN SUR -->
+                <div class="default-image-card">
+                  <img
+                    src="img/Imagenes_ficahas/10.png"
+                    alt="Información Región Sur"
+                    loading="lazy"
+                  />
+                </div>
+
+                <div class="default-image-card">
+                  <img
+                    src="img/Imagenes_ficahas/10.png"
+                    alt="Información adicional Sur"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="btn-home btn-centered btn-centered.mt-40"
+          onclick="goHome()"
+        >
+          Volver al Menú
+        </button>
+      </div>
+    </section>
+
+    <!-- ================= SECCIÓN: INVESTIGACIONES ================= -->
+    <section id="investigacion" class="section-container" style="display: none">
+      <div class="encabezado-institucional">
+        <img src="img/escudo.jpg" alt="Logo UAEMex" loading="lazy" />
+      </div>
+
+      <h2 class="text-center text-dark-green">Investigaciones</h2>
+
+      <div class="investigacion-layout">
+        <aside class="inv-sidebar">
+          <h3>Áreas de Estudio</h3>
+          <div id="filtrosAreas"></div>
+        </aside>
+
+        <div class="inv-content">
+          <div class="search-container uniform-search">
+            <input
+              type="text"
+              id="search-investigacion"
+              placeholder="Buscar investigación..."
+              aria-label="Buscar investigación"
+              onkeyup="ejecutarBusqueda()"
+            />
+            <button type="button" onclick="ejecutarBusqueda()">
+              🔍 Buscar
+            </button>
+          </div>
+
+          <div class="geo-wrapper geo-wrapper-flex">
+            <div id="map-investigacion" class="map-frame map-flex-main"></div>
+            <div id="investigacion-list" class="list-flex-sidebar"></div>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn-home btn-centered" onclick="goHome()">
+        Volver al Menú
+      </button>
+    </section>
+
+    <!-- ================= SECCIÓN: PROTECCIÓN INDUSTRIAL ================= -->
+    <section id="patentes" class="section-container" style="display: none">
+      <div class="encabezado-institucional">
+        <img src="img/escudo.jpg" alt="Logo UAEMex" loading="lazy" />
+      </div>
+
+      <h2 class="text-center text-dark-green">Protección Industrial</h2>
+
+      <div class="investigacion-layout">
+        <aside class="inv-sidebar">
+          <h3>Clasificación</h3>
+          <button
+            type="button"
+            class="filter-btn active"
+            onclick="filterPatentes('Patente')"
+          >
+            Patentes
+          </button>
+          <button
+            type="button"
+            class="filter-btn"
+            onclick="filterPatentes('Modelo de Utilidad')"
+          >
+            Modelos de Utilidad
+          </button>
+          <button
+            type="button"
+            class="filter-btn"
+            onclick="filterPatentes('Diseño Industrial')"
+          >
+            Diseños Industriales
+          </button>
+        </aside>
+
+        <div class="inv-content">
+          <div class="search-container uniform-search">
+            <input
+              type="text"
+              id="search-patentes"
+              placeholder="Buscar patente, inventor o palabra clave..."
+              aria-label="Buscar patente"
+              onkeyup="ejecutarBusquedaPatentes()"
+            />
+            <button type="button" onclick="ejecutarBusquedaPatentes()">
+              🔍 Buscar
+            </button>
+          </div>
+
+          <div class="geo-wrapper geo-wrapper-flex">
+            <div id="map-patentes" class="map-frame map-flex-main"></div>
+            <div id="patentes-list" class="list-flex-sidebar"></div>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn-home btn-centered" onclick="goHome()">
+        Volver al Menú
+      </button>
+    </section>
+
+    <!-- ================= SECCIÓN: LABORATORIOS ================= -->
+    <section id="laboratorios" class="section-container" style="display: none">
+      <div class="encabezado-institucional">
+        <img src="img/escudo.jpg" alt="Logo UAEMex" loading="lazy" />
+      </div>
+
+      <h2 class="text-center text-dark-green">
+        Laboratorios de Ciencia y Tecnología
+      </h2>
+
+      <div class="investigacion-layout">
+        <aside class="inv-sidebar">
+          <h3>Espacios Académicos</h3>
+          <!-- Botones de facultades -->
+          <button
+            type="button"
+            class="filter-btn"
+            onclick="filterLabs('Facultad de Ciencias')"
+          >
+            Facultad de Ciencias
+          </button>
+          <button
+            type="button"
+            class="filter-btn"
+            onclick="filterLabs('Facultad de Ciencias Agricolas')"
+          >
+            Facultad de Ciencias Agrícolas
+          </button>
+          <button
+            type="button"
+            class="filter-btn"
+            onclick="filterLabs('Facultad de Medicina Veterinaria y Zootecnia')"
+          >
+            Medicina Veterinaria y Zootecnia
+          </button>
+          <button
+            type="button"
+            class="filter-btn"
+            onclick="filterLabs('Facultad de Medicina')"
+          >
+            Facultad de Medicina
+          </button>
+          <button
+            type="button"
+            class="filter-btn"
+            onclick="filterLabs('Facultad de Odontologia')"
+          >
+            Facultad de Odontología
+          </button>
+          <button
+            type="button"
+            class="filter-btn"
+            onclick="filterLabs('Facultad de Quimica')"
+          >
+            Facultad de Química
+          </button>
+          <button
+            type="button"
+            class="filter-btn"
+            onclick="filterLabs('Facultad de Ingenieria')"
+          >
+            Facultad de Ingeniería
+          </button>
+          <button
+            type="button"
+            class="filter-btn"
+            onclick="filterLabs('Facultad de Geografia')"
+          >
+            Facultad de Geografía
+          </button>
+          <button
+            type="button"
+            class="filter-btn"
+            onclick="filterLabs('Facultad de Planeacion Urbana y Regional')"
+          >
+            Planeación Urbana y Regional
+          </button>
+
+          <!-- Botones de unidades -->
+          <button
+            type="button"
+            class="filter-btn"
+            onclick="filterLabs('Tianguistenco')"
+          >
+            Unidad Tianguistenco
+          </button>
+          <button
+            type="button"
+            class="filter-btn"
+            onclick="filterLabs('CU Atlacomulco')"
+          >
+            CU Atlacomulco
+          </button>
+          <button
+            type="button"
+            class="filter-btn"
+            onclick="filterLabs('CU Amecameca')"
+          >
+            CU Amecameca
+          </button>
+          <button
+            type="button"
+            class="filter-btn"
+            onclick="filterLabs('CU Ecatepec')"
+          >
+            CU Ecatepec
+          </button>
+          <button
+            type="button"
+            class="filter-btn"
+            onclick="filterLabs('CU Temascaltepec')"
+          >
+            CU Temascaltepec
+          </button>
+          <button
+            type="button"
+            class="filter-btn"
+            onclick="filterLabs('CU Tenancingo')"
+          >
+            CU Tenancingo
+          </button>
+          <button
+            type="button"
+            class="filter-btn"
+            onclick="filterLabs('CU Valle de Mexico')"
+          >
+            CU Valle de México
+          </button>
+        </aside>
+
+        <div class="inv-content">
+          <div class="search-container uniform-search">
+            <input
+              type="text"
+              id="search-labs"
+              placeholder="Buscar laboratorio o palabra clave..."
+              aria-label="Buscar laboratorio"
+              onkeyup="ejecutarBusquedaLabs()"
+            />
+            <button type="button" onclick="ejecutarBusquedaLabs()">
+              🔍 Buscar
+            </button>
+          </div>
+
+          <div class="geo-wrapper geo-wrapper-flex">
+            <div id="map-laboratorios" class="map-frame map-flex-main"></div>
+            <div id="labs-list" class="list-flex-sidebar"></div>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn-home btn-centered" onclick="goHome()">
+        Volver al Menú
+      </button>
+    </section>
+
+    <!-- ================= SECCIÓN: NECESIDADES SOCIALES ================= -->
+    <section
+      id="necesidades"
+      class="section-container py-20"
+      style="display: none"
+    >
+      <div class="encabezado-institucional">
+        <img src="img/escudo.jpg" alt="Logo UAEMex" loading="lazy" />
+      </div>
+
+      <div class="dashboard">
+        <header class="dashboard-header">
+          <h1 id="titulo-visualizador">
+            Visualizador de Necesidades Sociales del Estado de México
+          </h1>
+        </header>
+
+        <div class="dashboard-content">
+          <div class="dashboard-mapa">
+            <div id="mapa-necesidades"></div>
+          </div>
+          <aside class="dashboard-panel">
+            <div id="panel-capas"></div>
+            <div id="leyenda-container"></div>
+          </aside>
+        </div>
+      </div>
+
+      <button type="button" class="btn-home btn-centered" onclick="goHome()">
+        Volver al Menú
+      </button>
+    </section>
+
+    <!-- ================= SECCIÓN: NODO DIGITAL ================= -->
+    <section id="digital" class="section-container" style="display: none">
+      <div class="encabezado-institucional">
+        <img src="img/escudo.jpg" alt="Logo UAEMex" loading="lazy" />
+      </div>
+      <div class="nodo-selector text-center">
+        <div class="nodo-selector-title text-dark-green">
+          Nodo Creativo Digital ▾
+        </div>
+
+        <div class="nodo-selector-dropdown">
+          <div onclick="openModule('agua')">
+            Nodo para la Sustentabilidad Hídrica
+          </div>
+
+          <div onclick="openModule('alimenticio')">Nodo Alimentario</div>
+        </div>
+      </div>
+
+      <div class="geo-wrapper">
+        <div class="bottom-panel-municipios">
+          <div id="municipios-digital" class="columns-list"></div>
+        </div>
+        <div id="map-digital" class="map-frame"></div>
+
+        <aside class="geo-sidebar">
+          <h3>Laboratorios que integran el nodo</h3>
+          <div id="list-digital" class="scrollable-list"></div>
+          <button
+            type="button"
+            class="btn-home btn-centered mt-30"
+            onclick="goHome()"
+          >
+            Volver al Menú
+          </button>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ================= SECCIÓN: NODO AGUA ================= -->
+    <section id="agua" class="section-container" style="display: none">
+      <div class="encabezado-institucional">
+        <img src="img/escudo.jpg" alt="Logo UAEMex" loading="lazy" />
+      </div>
+      <div class="nodo-selector text-center">
+        <div class="nodo-selector-title text-dark-green">
+          Nodo para la Sustentabilidad Hídrica ▾
+        </div>
+
+        <div class="nodo-selector-dropdown">
+          <div onclick="openModule('digital')">Nodo Creativo Digital</div>
+
+          <div onclick="openModule('alimenticio')">Nodo Alimentario</div>
+        </div>
+      </div>
+
+      <div class="geo-wrapper">
+        <div class="bottom-panel-municipios">
+          <div id="municipios-agua" class="columns-list"></div>
+        </div>
+        <div id="map-agua" class="map-frame"></div>
+
+        <aside class="geo-sidebar">
+          <h3>
+            Integrantes de la Red de Investigación i+d Para la Sustentabilidad
+            Hídrica
+          </h3>
+          <div id="list-agua" class="scrollable-list"></div>
+          <button
+            type="button"
+            class="btn-home btn-centered mt-30"
+            onclick="goHome()"
+          >
+            Volver al Menú
+          </button>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ================= SECCIÓN: NODO ALIMENTICIO ================= -->
+    <section id="alimenticio" class="section-container" style="display: none">
+      <div class="encabezado-institucional">
+        <img src="img/escudo.jpg" alt="Logo UAEMex" loading="lazy" />
+      </div>
+      <div class="nodo-selector text-center">
+        <div class="nodo-selector-title text-dark-green">
+          Nodo Alimentario ▾
+        </div>
+
+        <div class="nodo-selector-dropdown">
+          <div onclick="openModule('digital')">Nodo Creativo Digital</div>
+
+          <div onclick="openModule('agua')">
+            Nodo para la Sustentabilidad Hídrica
+          </div>
+        </div>
+      </div>
+
+      <div class="geo-wrapper">
+        <div class="bottom-panel-municipios">
+          <div id="municipios-alimenticio" class="columns-list"></div>
+        </div>
+        <div id="map-alimenticio" class="map-frame"></div>
+
+        <aside class="geo-sidebar">
+          <h3>Centro y Facultades que Integran el Nodo</h3>
+          <div id="list-alimenticio" class="scrollable-list"></div>
+          <button
+            type="button"
+            class="btn-home btn-centered mt-30"
+            onclick="goHome()"
+          >
+            Volver al Menú
+          </button>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ================= SCRIPTS ================= -->
+    <!-- Defer es una buena práctica para no bloquear el renderizado del HTML -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      defer
+    ></script>
+    <script src="5_visualizador.js" defer></script>
+    <script src="1_mapas.js" defer></script>
+    <script src="2_oriente.js" defer></script>
+    <script src="3_datos.js" defer></script>
+    <script src="4_main.js" defer></script>
+    <script src="geojson/industria.js" defer></script>
+    <script src="geojson/municipios.js" defer></script>
+    <script src="geojson/alimentacion.js" defer></script>
+  </body>
+</html>
