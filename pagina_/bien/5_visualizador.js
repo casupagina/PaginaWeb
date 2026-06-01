@@ -76,7 +76,7 @@ function getColor(valor, nombreCapa) {
 // LEYENDA DINÁMICA
 // ==========================
 function actualizarLeyenda(nombreCapa) {
-  let div = document.querySelector("#mapa-necesidades .legend");
+  let div = document.querySelector(".legend");
   if (!div) return;
 
   // Colores definidos en tus rangos reales
@@ -145,100 +145,62 @@ function iniciarMapaNecesidades() {
   // ==========================
   // FUNCIÓN PARA CARGAR CAPAS
   // ==========================
-  // ==========================
-  // FUNCIÓN PARA CARGAR CAPAS (CORREGIDA)
-  // ==========================
-  // ==========================
-  // FUNCIÓN PARA CARGAR CAPAS (SIN SATURAR LA BD)
-  // ==========================
   function cargarCapa(nombre, url) {
-    // 1. Creamos la estructura de la capa, pero VACÍA (null)
-    var capa = L.geoJSON(null, {
-      style: function (feature) {
-        var campo = variablesCapas[nombre];
-        var valor = feature.properties[campo];
-        return {
-          fillColor: getColor(valor, nombre),
-          weight: 1,
-          color: "white",
-          fillOpacity: 0.7,
-        };
-      },
-      onEachFeature: function (feature, layer) {
-        var campo = variablesCapas[nombre];
-        var valorRaw = feature.properties[campo];
-        var nombreMun = feature.properties.nomgeo;
-        let textoValor;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        var capa = L.geoJSON(data, {
+          style: function (feature) {
+            var campo = variablesCapas[nombre];
+            var valor = feature.properties[campo];
 
-        if (nombre === "Carencia vivienda") {
-          let valor = Number(valorRaw).toLocaleString("es-MX", {
-            maximumFractionDigits: 0,
-          });
-          textoValor = `${valor} personas con Carencia a la vivienda`;
-        } else {
-          let valor = Number(valorRaw).toFixed(2);
-          textoValor = `${valor}% de ${nombre}`;
-        }
+            return {
+              fillColor: getColor(valor, nombre),
+              weight: 1,
+              color: "white",
+              fillOpacity: 0.7,
+            };
+          },
 
-        layer.bindTooltip(`<b>${nombreMun}</b><br>${textoValor}`, {
-          sticky: true,
+          onEachFeature: function (feature, layer) {
+            var campo = variablesCapas[nombre];
+            var valorRaw = feature.properties[campo];
+            var nombreMun = feature.properties.nomgeo;
+
+            let textoValor;
+
+            if (nombre === "Carencia vivienda") {
+              // ENTERO con separador de miles
+              let valor = Number(valorRaw).toLocaleString("es-MX", {
+                maximumFractionDigits: 0,
+              });
+
+              textoValor = `${valor} personas con Carencia a la vivienda`;
+            } else {
+              // DECIMALES para las demás capas
+              let valor = Number(valorRaw).toFixed(2);
+
+              textoValor = `${valor}% de ${nombre}`;
+            }
+
+            layer.bindTooltip(`<b>${nombreMun}</b><br>${textoValor}`, {
+              sticky: true,
+            });
+
+            layer.on("mouseover", function () {
+              this.setStyle({ weight: 1.5, color: "#000" });
+            });
+
+            layer.on("mouseout", function () {
+              this.setStyle({ weight: 1, color: "white" });
+            });
+          },
         });
-        layer.on("mouseover", function () {
-          this.setStyle({ weight: 1.5, color: "#000" });
-        });
-        layer.on("mouseout", function () {
-          this.setStyle({ weight: 1, color: "white" });
-        });
-      },
-    });
 
-    // 2. Guardamos la URL de la API en la capa para llamarla después
-    capa.urlDeDatos = url;
-    capa.datosYaCargados = false;
-
-    // 3. Agregamos la capa al control inmediatamente (evita que se buguee el menú)
-    capas[nombre] = capa;
-    controlCapas.addBaseLayer(capa, nombre);
+        capas[nombre] = capa;
+        controlCapas.addBaseLayer(capa, nombre);
+      });
   }
-
-  // ==========================
-  // EVENTO: DESCARGAR DATOS SOLO AL SELECCIONAR LA CAPA
-  // ==========================
-  mapaNecesidades.on("baselayerchange", function (e) {
-    if (e.name === "🗺️ Sin capa temática") {
-      document.getElementById("titulo-visualizador").innerText =
-        "Visualizador de Necesidades Sociales";
-      document.querySelector(".legend").innerHTML =
-        "<h4>Selecciona una capa</h4>";
-      return;
-    }
-
-    actualizarLeyenda(e.name);
-    let capaSeleccionada = e.layer;
-
-    // Si la capa no tiene datos, hacemos la petición a Flask
-    if (capaSeleccionada.urlDeDatos && !capaSeleccionada.datosYaCargados) {
-      document.getElementById("titulo-visualizador").innerText =
-        "Cargando datos de " + e.name + "... ⏳";
-
-      fetch(capaSeleccionada.urlDeDatos)
-        .then((res) => {
-          if (!res.ok) throw new Error(`Error de red: ${res.status}`);
-          return res.json();
-        })
-        .then((data) => {
-          // Inyectamos la geometría a la capa y marcamos como cargada
-          capaSeleccionada.addData(data);
-          capaSeleccionada.datosYaCargados = true;
-          document.getElementById("titulo-visualizador").innerText =
-            "Mapa de " + e.name;
-        })
-        .catch((error) => console.error(`Error cargando ${e.name}:`, error));
-    } else {
-      document.getElementById("titulo-visualizador").innerText =
-        "Mapa de " + e.name;
-    }
-  });
 
   // ==========================
   // CARGAR CAPAS
@@ -303,38 +265,4 @@ function iniciarMapaNecesidades() {
         "<h4>Selecciona una capa</h4>";
     }
   });
-
-  // ==========================
-  // REFRESCAR MAPA Y LIMPIAR CAPAS AL ENTRAR
-  // ==========================
-  function abrirVisualizadorNecesidades() {
-    iniciarMapaNecesidades();
-
-    // 1. Apagar cualquier capa temática que esté encendida
-    for (let nombre in capas) {
-      if (mapaNecesidades.hasLayer(capas[nombre])) {
-        mapaNecesidades.removeLayer(capas[nombre]);
-      }
-    }
-
-    // 2. Restaurar los textos del título y la leyenda por defecto
-    let titulo = document.getElementById("titulo-visualizador");
-    if (titulo) titulo.innerText = "Visualizador de Necesidades Sociales";
-
-    let leyenda = document.querySelector("#necesidades .legend");
-    if (leyenda) leyenda.innerHTML = "<h4>Selecciona una capa</h4>";
-
-    // 3. Desmarcar visualmente las opciones del menú de capas
-    let inputs = document.querySelectorAll(
-      "#mapa-necesidades .leaflet-control-layers-selector",
-    );
-    inputs.forEach((input) => (input.checked = false));
-
-    // 4. Ajustar el mapa (Solución de pantalla gris)
-    setTimeout(() => {
-      if (mapaNecesidades) {
-        mapaNecesidades.invalidateSize();
-      }
-    }, 150);
-  }
 }

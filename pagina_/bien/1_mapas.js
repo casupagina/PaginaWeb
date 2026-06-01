@@ -441,8 +441,9 @@ function initMap(mapId, data, listId, type) {
     }
 
     wrapper.appendChild(legendDiv);
-
+   
     map.getContainer().appendChild(wrapper);
+    
   }
 
   // 4. LÓGICA DE OFERTA Y MARCADORES LATERALES

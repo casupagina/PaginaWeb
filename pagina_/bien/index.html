@@ -88,32 +88,6 @@
                     <li onclick="openModule('laboratorios')">
                       Laboratorios para la ciencia
                     </li>
-                    <li
-                      onclick="
-                        openModule('emprendimiento');
-                        initMapaPuntosInteractivos(
-                          'map-emprendimiento',
-                          centrosEmprendimiento,
-                          'list-emprendimiento',
-                          true,
-                        );
-                      "
-                    >
-                      Unidades de emprendimiento e innovación
-                    </li>
-                    <li
-                      onclick="
-                        openModule('incubadoras');
-                        initMapaPuntosInteractivos(
-                          'map-incubadoras',
-                          centrosIncubadoras,
-                          'list-incubadoras',
-                          false,
-                        );
-                      "
-                    >
-                      Incubadoras de la innovación
-                    </li>
                   </ul>
                 </li>
                 <li class="sub-item">
@@ -213,47 +187,6 @@
                     </li>
                   </ul>
                 </li>
-                <li class="sub-item">
-                  <span class="sub-title">Región Valle de México</span>
-                  <ul class="sub-dropdown">
-                    <li class="sub-item-level3">
-                      <span class="sub-title"
-                        >Capacidades estratégicas regional</span
-                      >
-                      <ul class="sub-dropdown-level3">
-                        <li onclick="cargarMapaRegion('valle')">
-                          Programa Educativo
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="sub-item-level3">
-                      <span class="sub-title">Situación Regional</span>
-                      <ul class="sub-dropdown-level3">
-                        <li onclick="cargarSituacionRegional('Ecatepec')">
-                          C.U. Ecatepec
-                        </li>
-                        <li onclick="cargarSituacionRegional('Teotihuacán')">
-                          C.U. Teotihuacán
-                        </li>
-                        <li onclick="cargarSituacionRegional('Zumpango')">
-                          C.U. Zumpango
-                        </li>
-                         <li onclick="cargarSituacionRegional('Atizapán')">
-                          C.U. Atizapán
-                        </li>
-                        <li onclick="cargarSituacionRegional('Cuautitlán')">
-                          U.A. Cuautitlán
-                        </li>
-                        <li onclick="cargarSituacionRegional('Huehuetoca')">
-                          U.A. Huehuetoca
-                        </li>
-                        <li onclick="cargarSituacionRegional('Acolman')">
-                          U.A. Acolman
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
               </ul>
             </li>
 
@@ -278,12 +211,7 @@
                 >Necesidades Sociales del Estado de México</span
               >
               <ul class="dropdown">
-                <li
-                  onclick="
-                    openModule('necesidades');
-                    abrirVisualizadorNecesidades();
-                  "
-                >
+                <li onclick="openModule('necesidades')">
                   Visualizador de Necesidades en el EdoMex
                 </li>
               </ul>
@@ -448,30 +376,6 @@
               <li onclick="cargarSituacionRegional('Santiago Tianguistenco')">
                 Santiago Tianguistenco
               </li>
-              <li onclick="cargarSituacionRegional('Ixtapan de la Sal')">
-                Ixtapan de la Sal
-              </li>
-              <li onclick="cargarSituacionRegional('Tejupilco')">Tejupilco</li>
-            </ul>
-          </div>
-          <div class="menu-minimalista-item">
-            <span class="menu-minimalista-titulo"
-              >Región Valle de México <small>▼</small></span
-            >
-            <ul class="menu-minimalista-dropdown">
-              <li onclick="cargarSituacionRegional('Ecatepec')">Ecatepec</li>
-              <li onclick="cargarSituacionRegional('Huehuetoca')">
-                Huehuetoca
-              </li>
-              <li onclick="cargarSituacionRegional('Acolman')">Acolman</li>
-              <li onclick="cargarSituacionRegional('Teotihuacán')">
-                Teotihuacán
-              </li>
-              <li onclick="cargarSituacionRegional('Zumpango')">Zumpango</li>
-              <li onclick="cargarSituacionRegional('Cuautitlán')">
-                Cuautitlán
-              </li>
-              <li onclick="cargarSituacionRegional('Atizapán')">Atizapán</li>
             </ul>
           </div>
         </div>
@@ -512,23 +416,6 @@
                 </div>
 
                 <!-- REGIÓN SUR -->
-                <div class="default-image-card">
-                  <img
-                    src="img/Imagenes_ficahas/10.png"
-                    alt="Información Región Sur"
-                    loading="lazy"
-                  />
-                </div>
-
-                <div class="default-image-card">
-                  <img
-                    src="img/Imagenes_ficahas/10.png"
-                    alt="Información adicional Sur"
-                    loading="lazy"
-                  />
-                </div>
-
-                <!-- REGIÓN VAlle de Mexico -->
                 <div class="default-image-card">
                   <img
                     src="img/Imagenes_ficahas/10.png"
@@ -966,66 +853,6 @@
       </div>
     </section>
 
-    <!-- ================= SECCIÓN: Incubadoras ================= -->
-    <section id="incubadoras" class="section-container" style="display: none">
-      <div class="encabezado-institucional">
-        <img src="img/escudo.jpg" alt="Logo UAEMex" loading="lazy" />
-      </div>
-      <h2 class="text-center text-dark-green">Incubadoras de la Innovación</h2>
-
-      <div class="geo-wrapper" style="display: block">
-        <div
-          id="map-incubadoras"
-          class="map-frame"
-          style="width: 100%; height: 600px"
-        ></div>
-      </div>
-      <button
-        type="button"
-        class="btn-home btn-centered"
-        style="
-          margin-top: 60px;
-          margin-bottom: 60px;
-          position: relative;
-          z-index: 10;
-        "
-        onclick="goHome()"
-      >
-        Volver al Menú
-      </button>
-    </section>
-
-    <!-- ================= SECCIÓN: emprendimineto ================= -->
-    <section
-      id="emprendimiento"
-      class="section-container"
-      style="display: none"
-    >
-      <div class="encabezado-institucional">
-        <img src="img/escudo.jpg" alt="Logo UAEMex" loading="lazy" />
-      </div>
-      <h2 class="text-center text-dark-green" style="margin-bottom: 0">
-        Unidades de Emprendimiento e Innovación
-      </h2>
-
-      <div class="geo-wrapper">
-        <div id="map-emprendimiento" class="map-frame"></div>
-      </div>
-      <button
-        type="button"
-        class="btn-home btn-centered"
-        style="
-          margin-top: 100px;
-          margin-bottom: 60px;
-          position: relative;
-          z-index: 10;
-        "
-        onclick="goHome()"
-      >
-        Volver al Menú
-      </button>
-    </section>
-
     <!-- ================= SCRIPTS ================= -->
     <!-- Defer es una buena práctica para no bloquear el renderizado del HTML -->
     <script
@@ -1037,7 +864,6 @@
     <script src="2_oriente.js" defer></script>
     <script src="3_datos.js" defer></script>
     <script src="4_main.js" defer></script>
-    <script src="6_emprendimiento.js" defer></script>
     <script src="geojson/industria.js" defer></script>
     <script src="geojson/municipios.js" defer></script>
     <script src="geojson/alimentacion.js" defer></script>

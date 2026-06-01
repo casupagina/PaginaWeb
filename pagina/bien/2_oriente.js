@@ -1,6 +1,6 @@
-// 2_oriente.js: REGIÓN ORIENTE Y OFERTA
 // ==========================================
-
+// 1. SEDES Y OFERTA: REGIÓN ORIENTE
+// ==========================================
 const sedesOriente = [
   {
     name: "C.U. UAEM Amecameca",
@@ -29,33 +29,7 @@ const sedesOriente = [
   },
 ];
 
-const sedesSur = [
-  {
-    name: "C.U. UAEM Atlacomulco",
-    loc: [19.76176449530711, -99.84085350230627],
-    space: "Atlacomulco",
-  },
-  {
-    name: "C.U. UAEM Tenancingo",
-    loc: [18.96832739857548, -99.6124040915006],
-    space: "Tenancingo",
-  },
-  {
-    name: "C.U. UAEM Temascaltepec",
-    loc: [19.04509951361619, -100.05175075913317],
-    space: "Temascaltepec",
-  },
-  {
-    name: "Campus Tianguistenco",
-    loc: [19.196800008810165, -99.51780876309819],
-    space: "Tianguistenco",
-  },
-];
-
 const ofertaOriente = [
-  // ---------------------------------------------------------
-  // 2. CIENCIAS SOCIALES Y ADMINISTRATIVAS
-  // ---------------------------------------------------------
   {
     area: "Ciencias Sociales y Administrativas",
     space: "Amecameca",
@@ -99,10 +73,6 @@ const ofertaOriente = [
       "Lic. Administración y Promoción de la Obra Urbana",
     ],
   },
-
-  // ---------------------------------------------------------
-  // 3. INGENIERÍA Y TECNOLOGÍA
-  // ---------------------------------------------------------
   {
     area: "Ingeniería y Tecnología",
     space: "Nezahualcóyotl",
@@ -123,10 +93,6 @@ const ofertaOriente = [
     space: "Chimalhuacán",
     carreras: ["Ing. Industrial", "Ing. Mecatrónica"],
   },
-
-  // ---------------------------------------------------------
-  // 6. CIENCIAS DE LA SALUD
-  // ---------------------------------------------------------
   {
     area: "Ciencias de la Salud",
     space: "Amecameca",
@@ -147,10 +113,6 @@ const ofertaOriente = [
     space: "Chimalhuacán",
     carreras: ["Lic. Medico cirujano"],
   },
-
-  // ---------------------------------------------------------
-  // 5. EDUCACIÓN Y HUMANIDADES
-  // ---------------------------------------------------------
   {
     area: "Educación y Humanidades",
     space: "Amecameca",
@@ -168,8 +130,33 @@ const ofertaOriente = [
   },
 ];
 
+// ==========================================
+// 2. SEDES Y OFERTA: REGIÓN SUR
+// ==========================================
+const sedesSur = [
+  {
+    name: "C.U. UAEM Atlacomulco",
+    loc: [19.76176449530711, -99.84085350230627],
+    space: "Atlacomulco",
+  },
+  {
+    name: "C.U. UAEM Tenancingo",
+    loc: [18.96832739857548, -99.6124040915006],
+    space: "Tenancingo",
+  },
+  {
+    name: "C.U. UAEM Temascaltepec",
+    loc: [19.04509951361619, -100.05175075913317],
+    space: "Temascaltepec",
+  },
+  {
+    name: "Campus Tianguistenco",
+    loc: [19.196800008810165, -99.51780876309819],
+    space: "Tianguistenco",
+  },
+];
+
 const ofertaSur = [
-  // ================= ATLACOMULCO =================
   {
     area: "Ciencias Sociales y Administrativas",
     space: "Atlacomulco",
@@ -186,8 +173,6 @@ const ofertaSur = [
     space: "Atlacomulco",
     carreras: ["Ing. en Computación"],
   },
-
-  // ================= TENANCINGO =================
   {
     area: "Ciencias Sociales y Administrativas",
     space: "Tenancingo",
@@ -209,8 +194,6 @@ const ofertaSur = [
     space: "Tenancingo",
     carreras: ["Ing. Agrónomo en Floricultura"],
   },
-
-  // ================= TEMASCALTEPEC =================
   {
     area: "Ciencias Sociales y Administrativas",
     space: "Temascaltepec",
@@ -231,8 +214,6 @@ const ofertaSur = [
     space: "Temascaltepec",
     carreras: ["Ing. Agrónomo Zootecnista"],
   },
-
-  // ================= TIANGUISTENCO =================
   {
     area: "Ciencias Sociales y Administrativas",
     space: "Tianguistenco",
@@ -251,13 +232,214 @@ const ofertaSur = [
     ],
   },
 ];
-// =================================================
+
+// ==========================================
+// 3. SEDES Y OFERTA: REGIÓN VALLE DE MÉXICO
+// ==========================================
+const sedesValle = [
+  {
+    name: "C.U. UAEM Ecatepec",
+    loc: [19.59825641434787, -99.05715935696747],
+    space: "Ecatepec",
+  },
+  {
+    name: "C.U. UAEM Valle de México",
+    loc: [19.585648329455754, -99.28348130673135],
+    space: "Valle de México",
+  },
+  {
+    name: "C.U. UAEM Valle de Teotihuacán",
+    loc: [19.771938954867665, -98.77464574716551],
+    space: "Teotihuacán",
+  },
+  {
+    name: "C.U. UAEM Zumpango",
+    loc: [19.82819043618442, -99.0768755932464],
+    space: "Zumpango",
+  },
+  {
+    name: "UAP Acolman",
+    loc: [19.651235596047727, -98.9327418067499],
+    space: "Acolman",
+  },
+  {
+    name: "UAP Cuautitlán Izcalli",
+    loc: [19.6438868955785, -99.21388654907307],
+    space: "Cuautitlán",
+  },
+  {
+    name: "UAP Huehuetoca",
+    loc: [19.850588234573205, -99.21659589691937],
+    space: "Huehuetoca",
+  },
+  {
+    name: "UAP Tlalnepantla",
+    loc: [19.530441634596414, -99.0898267760406],
+    space: "Tlalnepantla",
+  },
+];
+
+const ofertaValle = [
+  {
+    area: "Ciencias Sociales y Administrativas",
+    space: "Ecatepec",
+    carreras: [
+      "Lic. en Informática administrativa",
+      "Lic. en Psicología",
+      "Lic. en Administración",
+      "Lic. en Contaduría",
+      "Lic. en Derecho",
+    ],
+  },
+  {
+    area: "Ciencias Sociales y Administrativas",
+    space: "Valle de México",
+    carreras: [
+      "Lic. en Informática administrativa",
+      "Lic. en Economía",
+      "Lic. en Administración",
+      "Lic. en Contaduría",
+      "Lic. en Relaciones Económicas Internacionales",
+      "Lic. en Derecho",
+    ],
+  },
+  {
+    area: "Ciencias Sociales y Administrativas",
+    space: "Teotihuacán",
+    carreras: [
+      "Lic. en Contaduría",
+      "Lic. en Derecho",
+      "Lic. en Informática Administrativa Financiera",
+      "Lic. en Psicología",
+      "Lic. en Turismo",
+      "Lic. en Ciencias Políticas y Administrativas",
+    ],
+  },
+  {
+    area: "Ciencias Sociales y Administrativas",
+    space: "Zumpango",
+    carreras: [
+      "Lic. en Administración",
+      "Lic. en Contaduría",
+      "Lic. en Ciencias Políticas y Administración Pública",
+      "Lic. en Derecho",
+      "Lic. en Psicología",
+      "Lic. en Turismo",
+    ],
+  },
+  {
+    area: "Ciencias Sociales y Administrativas",
+    space: "Acolman",
+    carreras: ["Lic. en Mercadotecnia"],
+  },
+  {
+    area: "Ciencias Sociales y Administrativas",
+    space: "Cuautitlán",
+    carreras: [
+      "Lic. en Derecho Internacional",
+      "Lic. en Negocios Internacionales",
+    ],
+  },
+  {
+    area: "Ciencias Sociales y Administrativas",
+    space: "Huehuetoca",
+    carreras: ["Lic. en Comunicación", "Lic. en Trabajo Social"],
+  },
+  {
+    area: "Ciencias Sociales y Administrativas",
+    space: "Tlalnepantla",
+    carreras: [
+      "Lic. en Administración",
+      "Lic. en Medios Alternos de Solución de Conflictos",
+      "Lic. en Negocios Internacionales Bilingüe",
+    ],
+  },
+  {
+    area: "Ingeniería y Tecnología",
+    space: "Ecatepec",
+    carreras: ["Ing. en Computación"],
+  },
+  {
+    area: "Ingeniería y Tecnología",
+    space: "Valle de México",
+    carreras: [
+      "Ing. en Computación",
+      "Ing. en Sistemas y Comunicaciones",
+      "Ing. Industrial",
+      "Ing. Informática administrativa a distancia",
+    ],
+  },
+  {
+    area: "Ingeniería y Tecnología",
+    space: "Teotihuacán",
+    carreras: ["Lic. de Ingeniería en Computación"],
+  },
+  {
+    area: "Ingeniería y Tecnología",
+    space: "Zumpango",
+    carreras: ["Ing. en Computación", "Ing. Agrónomo en Producción"],
+  },
+  {
+    area: "Ingeniería y Tecnología",
+    space: "Acolman",
+    carreras: ["Ing. Química", "Ing. en Producción Industrial"],
+  },
+  {
+    area: "Ingeniería y Tecnología",
+    space: "Cuautitlán",
+    carreras: ["Lic. en Loguística"],
+  },
+  {
+    area: "Ingeniería y Tecnología",
+    space: "Tlalnepantla",
+    carreras: ["Lic. en Loguística"],
+  },
+  {
+    area: "Ciencias Naturales y Exactas",
+    space: "Valle de México",
+    carreras: ["Lic. en Actuaría"],
+  },
+  {
+    area: "Ciencias Naturales y Exactas",
+    space: "Cuautitlán",
+    carreras: ["Lic. en Actuaría"],
+  },
+  {
+    area: "Ciencias Naturales y Exactas",
+    space: "Huehuetoca",
+    carreras: ["Lic. en Actuaría"],
+  },
+  {
+    area: "Educación y Humanidades",
+    space: "Zumpango",
+    carreras: ["Lic. en Diseño Industrial"],
+  },
+  {
+    area: "Educación y Humanidades",
+    space: "Huehuetoca",
+    carreras: ["Lic. en Educación", "Lic. en Lenguas Modernas"],
+  },
+  {
+    area: "Ciencias de la Salud",
+    space: "Zumpango",
+    carreras: ["Lic. en Enfermería"],
+  },
+  {
+    area: "Ciencias de la Salud",
+    space: "Acolman",
+    carreras: ["Lic. en Nutrición"],
+  },
+  {
+    area: "Ciencias de la Salud",
+    space: "Huehuetoca",
+    carreras: ["Lic. en Cirujano Dentista"],
+  },
+];
+
+// =====================================================
 // LÓGICA DE CARRETE (SITUACIÓN REGIONAL)
 // =====================================================
-
-// Diccionario de imágenes por municipi
 const fichasMunicipios = {
-  //  REGIÓN SUR
   amecameca: [
     "img/Imagenes_ficahas/Amecameca/3.png",
     "img/Imagenes_ficahas/9.png",
@@ -272,8 +454,6 @@ const fichasMunicipios = {
     "img/Imagenes_ficahas/Nezahualcoyotl/4.png",
     "img/Imagenes_ficahas/9.png",
   ],
-
-  //  REGIÓN SUR
   temascaltepec: [
     "img/Imagenes_ficahas/Temascaltepec/6.png",
     "img/Imagenes_ficahas/10.png",
@@ -290,11 +470,43 @@ const fichasMunicipios = {
     "img/Imagenes_ficahas/Tianguistenco/7.png",
     "img/Imagenes_ficahas/10.png",
   ],
+  ixtapandelasal: [
+    "img/Imagenes_ficahas/Ixtapan_sal/10.png",
+    "img/Imagenes_ficahas/10.png",
+  ],
+  tejupilco: [
+    "img/Imagenes_ficahas/Tejupilco/9.png",
+    "img/Imagenes_ficahas/10.png",
+  ],
+  ecatepec: [
+    "img/Imagenes_ficahas/region_valle/14.png",
+    "img/Imagenes_ficahas/10.png",
+  ],
+  huehuetoca: [
+    "img/Imagenes_ficahas/region_valle/15.png",
+    "img/Imagenes_ficahas/10.png",
+  ],
+  acolman: [
+    "img/Imagenes_ficahas/region_valle/16.png",
+    "img/Imagenes_ficahas/10.png",
+  ],
+  teotihuacan: [
+    "img/Imagenes_ficahas/region_valle/17.png",
+    "img/Imagenes_ficahas/10.png",
+  ],
+  zumpango: [
+    "img/Imagenes_ficahas/region_valle/18.png",
+    "img/Imagenes_ficahas/10.png",
+  ],
+  cuautitlan: [
+    "img/Imagenes_ficahas/region_valle/19.png",
+    "img/Imagenes_ficahas/10.png",
+  ],
+  atizapan: [
+    "img/Imagenes_ficahas/region_valle/20.png",
+    "img/Imagenes_ficahas/10.png",
+  ],
 };
-
-// ==========================================
-// DATOS MENU SITUACION REGIONAL
-// ==========================================
 
 const situacionRegionalMenus = {
   oriente: [
@@ -309,7 +521,6 @@ const situacionRegionalMenus = {
       ],
     },
   ],
-
   sur: [
     {
       categoria: "Municipios",
@@ -318,43 +529,48 @@ const situacionRegionalMenus = {
         "Tenancingo",
         "Atlacomulco",
         "Santiago Tianguistenco",
+        "Ixtapan de la Sal",
+        "Tejupilco",
+      ],
+    },
+  ],
+  valle_mexico: [
+    {
+      categoria: "Municipios",
+      municipios: [
+        "Ecatepec",
+        "Huehuetoca",
+        "Acolman",
+        "Teotihucán",
+        "Zumpango",
+        "Cuautitlán",
+        "Atizapán",
       ],
     },
   ],
 };
 
-// ==========================================
-// GENERADOR MENU SITUACION
-// ==========================================
-
 let indiceActual = 0;
 let imagenesActuales = [];
+let capasRegionalesGuardadas = {};
 
-// 2. Función para cambiar la imagen según el municipio seleccionado
 function mostrarFichaImagen(municipio) {
   const munKey = municipio
     .toLowerCase()
     .normalize("NFD")
     .replace(/\s+/g, "")
     .replace(/[\u0300-\u036f]/g, "");
-
-  // 👇 AHORA GUARDAMOS TODAS LAS IMÁGENES
   imagenesActuales = fichasMunicipios[munKey] || [];
-
-  // 👇 Reiniciamos índice
   indiceActual = 0;
-
   const imgElement = document.getElementById("imagen-ficha-actual");
   const placeholder = document.getElementById("placeholder-ficha");
 
   if (imagenesActuales.length > 0) {
     imgElement.src = imagenesActuales[indiceActual];
-
     imgElement.style.display = "block";
     placeholder.style.display = "none";
   } else {
     alert(`La ficha para ${municipio} se encuentra en proceso.`);
-
     imgElement.style.display = "none";
     placeholder.style.display = "flex";
   }
@@ -362,54 +578,32 @@ function mostrarFichaImagen(municipio) {
 
 function siguienteFicha() {
   if (imagenesActuales.length === 0) return;
-
   indiceActual++;
-
-  if (indiceActual >= imagenesActuales.length) {
-    indiceActual = 0;
-  }
-
+  if (indiceActual >= imagenesActuales.length) indiceActual = 0;
   document.getElementById("imagen-ficha-actual").src =
     imagenesActuales[indiceActual];
 }
 
 function anteriorFicha() {
   if (imagenesActuales.length === 0) return;
-
   indiceActual--;
-
-  if (indiceActual < 0) {
-    indiceActual = imagenesActuales.length - 1;
-  }
-
+  if (indiceActual < 0) indiceActual = imagenesActuales.length - 1;
   document.getElementById("imagen-ficha-actual").src =
     imagenesActuales[indiceActual];
 }
 
-// Función puente para conectar el menú principal superior con el nuevo Dashboard
 function cargarSituacionRegional(municipio) {
-  // 1. Abrimos el módulo de situación
-  if (typeof openModule === "function") {
-    openModule("situacion");
-  }
-
-  // 2. Disparamos la función que muestra la imagen de la ficha
+  if (typeof openModule === "function") openModule("situacion");
   setTimeout(() => {
     mostrarFichaImagen(municipio);
-
-    // Hacemos scroll hacia arriba por si la página quedó movida
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, 50);
 }
 
-// Variable global para guardar los marcadores y poder abrirlos desde las tarjetas
+// ==========================================
+// VARIABLES GLOBALES MAPA
+// ==========================================
 let marcadoresOfertaActivos = {};
-
-// Al inicio del archivo, junto a las de Oriente
-// ==========================================
-// MINI VISUALIZADOR OFERTA
-// ==========================================
-// Variables únicas para el mapa reutilizable
 let mapaRegional = null;
 let capaMunicipiosActiva = null;
 let marcadoresActivos = L.layerGroup();
@@ -426,17 +620,23 @@ const norm = (str) =>
         .replace(/[\u0300-\u036f]/g, "")
         .trim()
     : "";
+
 // ==========================================
-// FUNCIÓN PARA GENERAR EL MENÚ DESPLEGABLE DEL SUR
+// GENERADOR MENÚ DINÁMICO
 // ==========================================
 function generarMenuRegional(region) {
-  // Este ID es el que pusimos en el paso anterior en el index.html
   const menu = document.getElementById("menu-oferta-dinamico");
   if (!menu) return;
   menu.innerHTML = "";
 
-  // Seleccionamos automáticamente los datos correctos
-  const datos = region === "sur" ? ofertaSur : ofertaOriente;
+  let datos;
+  if (region === "sur") {
+    datos = ofertaSur;
+  } else if (region === "valle") {
+    datos = ofertaValle;
+  } else {
+    datos = ofertaOriente;
+  }
 
   const agrupado = {};
   datos.forEach((item) => {
@@ -447,15 +647,9 @@ function generarMenuRegional(region) {
 
   Object.keys(agrupado).forEach((area) => {
     const areaLi = document.createElement("li");
-
     areaLi.className = "area-btn";
     areaLi.dataset.area = area;
-
-    areaLi.innerHTML = `
-  <span class="situacion-menu-title">
-    ${area}
-  </span>
-`;
+    areaLi.innerHTML = `<span class="situacion-menu-title">${area}</span>`;
 
     const municipiosUl = document.createElement("ul");
     municipiosUl.className = "menu-municipios";
@@ -484,23 +678,49 @@ function generarMenuRegional(region) {
 }
 
 // =====================================================
-// FUNCIÓN PRINCIPAL DE MAPA REGIONAL (REFACORIZADA)
+// FUNCIÓN PRINCIPAL DE MAPA REGIONAL
 // =====================================================
 function cargarMapaRegion(region) {
-  // 1. Abrir la sección única y cambiar el título
   if (typeof openModule === "function") openModule("oferta-regional");
 
-  const titulo = document.getElementById("titulo-oferta");
-  if (titulo) {
-    titulo.innerText = `Capacidades Estratégicas Regionales (Oferta Educativa - ${region === "sur" ? "Sur" : "Oriente"})`;
+  // 1. RUTINA DE LIMPIEZA Y AJUSTE AL ENTRAR
+  if (mapaRegional) {
+    // Apagamos las capas si alguna se quedó encendida
+    for (let nom in capasRegionalesGuardadas) {
+      if (mapaRegional.hasLayer(capasRegionalesGuardadas[nom])) {
+        mapaRegional.removeLayer(capasRegionalesGuardadas[nom]);
+      }
+    }
+
+    // Activamos la opción "Sin capa" por defecto para reiniciar los botones
+    if (capasRegionalesGuardadas["🗺️ Sin capa temática"]) {
+      mapaRegional.addLayer(capasRegionalesGuardadas["🗺️ Sin capa temática"]);
+    }
+
+    // Restauramos la leyenda a su estado original
+    let leyendaDiv = document.querySelector("#mapa-reutilizable .legend");
+    if (leyendaDiv) {
+      leyendaDiv.innerHTML = "<h4>Selecciona una capa</h4>";
+    }
+
+    // Forzamos el tamaño para evitar la pantalla gris
+    mapaRegional.invalidateSize();
   }
 
-  // ¡CLAVE! Actualizamos la región global SIEMPRE que entramos
+  let nombreRegion =
+    region === "sur"
+      ? "Sur"
+      : region === "valle"
+        ? "Valle de México"
+        : "Oriente";
+  const titulo = document.getElementById("titulo-oferta");
+  if (titulo) {
+    titulo.innerText = `Capacidades Estratégicas Regionales (Oferta Educativa - ${nombreRegion})`;
+  }
+
   regionActual = region;
 
-  // =================================================================
-  // A. INICIALIZACIÓN (SOLO SE EJECUTA LA PRIMERA VEZ QUE ENTRAS)
-  // =================================================================
+  // --- A. INICIALIZACIÓN ---
   if (!mapaRegional) {
     mapaRegional = L.map("mapa-reutilizable", { zoomControl: false }).setView(
       [19.2, -99.3],
@@ -508,23 +728,29 @@ function cargarMapaRegion(region) {
     );
     L.control.zoom({ position: "topright" }).addTo(mapaRegional);
 
-    /* --- BOTÓN RESET --- */
     const resetControl = L.control({ position: "topright" });
     resetControl.onAdd = function () {
       const div = L.DomUtil.create("div", "leaflet-bar leaflet-control");
       div.innerHTML = `<a href="#" title="Restablecer mapa" style="font-size:18px; width:34px; height:34px; line-height:34px; text-align:center; display:block; text-decoration:none; color:#134a2c; font-weight:bold;">⟳</a>`;
       div.onclick = function (e) {
         e.preventDefault();
-        const centro =
-          regionActual === "sur" ? [19.15, -99.7] : [19.35, -98.95];
-        const zoom = regionActual === "sur" ? 9 : 10;
+        let centro, zoom;
+        if (regionActual === "sur") {
+          centro = [19.15, -99.7];
+          zoom = 9;
+        } else if (regionActual === "valle") {
+          centro = [19.65, -99.1];
+          zoom = 10;
+        } else {
+          centro = [19.35, -98.95];
+          zoom = 10;
+        }
         mapaRegional.setView(centro, zoom);
       };
       return div;
     };
     resetControl.addTo(mapaRegional);
 
-    /* --- LEYENDA REGIONAL --- */
     var leyendaRegional = L.control({ position: "bottomright" });
     leyendaRegional.onAdd = function () {
       var div = L.DomUtil.create("div", "legend");
@@ -533,10 +759,8 @@ function cargarMapaRegion(region) {
     };
     leyendaRegional.addTo(mapaRegional);
 
-    // Agregamos el grupo de marcadores al mapa
     marcadoresActivos.addTo(mapaRegional);
 
-    /* --- FONDO GRIS DEL ESTADO (SE DIBUJA SOLO UNA VEZ) --- */
     L.geoJSON(datosMunicipios, {
       style: {
         fillColor: "#d9d9d9",
@@ -547,7 +771,6 @@ function cargarMapaRegion(region) {
       interactive: false,
     }).addTo(mapaRegional);
 
-    /* --- CAPAS TEMÁTICAS (Pobreza, Salud, etc.) --- */
     const configCapas = {
       Pobreza: { prop: "porcentaje_2", url: "pobreza" },
       "Rezago educativo": { prop: "porcentaje", url: "rezago_educativo" },
@@ -558,117 +781,162 @@ function cargarMapaRegion(region) {
     };
 
     if (!capasYaCargadas) {
-      const overlaysValidos = {};
+      // 🔥 NUEVO: Agregamos una capa vacía para poder "apagar" el mapa
+      capasRegionalesGuardadas["🗺️ Sin capa temática"] = L.layerGroup();
 
       Object.keys(configCapas).forEach((nom) => {
-        const grupo = L.layerGroup();
-
-        fetch(`http://localhost:5000/api/${configCapas[nom].url}`)
-          .then((r) => {
-            if (!r.ok) {
-              throw new Error(`Error HTTP: ${r.status}`);
-            }
-
-            return r.json();
-          })
-
-          .then((data) => {
-            // Validar GeoJSON
-            if (!data || !data.features || data.features.length === 0) {
-              console.warn(`Capa vacía: ${nom}`);
-              return;
-            }
-
-            L.geoJSON(data, {
-              style: (f) => ({
-                fillColor:
-                  typeof getColor === "function"
-                    ? getColor(f.properties[configCapas[nom].prop], nom)
-                    : "#d7c986",
-
-                weight: 1.5,
-                color: "white",
-                fillOpacity: 0.7,
-              }),
-
-              onEachFeature: (f, l) => {
-                let val = f.properties[configCapas[nom].prop];
-
-                let txt =
-                  nom === "Carencia vivienda"
-                    ? `${Number(val).toLocaleString()} personas`
-                    : `${Number(val).toFixed(2)}%`;
-
-                const nombreMunicipio =
-                  f.properties.NOMGEO || f.properties.nomgeo || "Municipio";
-
-                l.bindTooltip(`<b>${nombreMunicipio}</b><br>${txt} de ${nom}`, {
-                  sticky: true,
-                });
-              },
-            }).addTo(grupo);
-
-            overlaysValidos[nom] = grupo;
-          })
-
-          .catch((err) => {
-            console.error(`Error cargando capa ${nom}:`, err);
-          });
+        capasRegionalesGuardadas[nom] = L.layerGroup();
+        capasRegionalesGuardadas[nom].urlDeDatos =
+          `http://localhost:5000/api/${configCapas[nom].url}`;
+        capasRegionalesGuardadas[nom].propiedadValor = configCapas[nom].prop;
+        capasRegionalesGuardadas[nom].datosYaCargados = false;
       });
 
-      // Esperar un poco para asegurar que cargaron
-      setTimeout(() => {
-        L.control
-          .layers(overlaysValidos, null, {
-            collapsed: false,
-            position: "topright",
-          })
-          .addTo(mapaRegional);
-      }, 1000);
+      L.control
+        .layers(capasRegionalesGuardadas, null, {
+          collapsed: false,
+          position: "topright",
+        })
+        .addTo(mapaRegional);
+
+      // Evento para descargar los datos SÓLO cuando se seleccionen
+      mapaRegional.on("baselayerchange", function (e) {
+        let grupoSeleccionado = e.layer;
+        let nombreCapa = e.name;
+        let leyendaDiv = document.querySelector("#mapa-reutilizable .legend");
+
+        // Si eligen apagar la capa, limpiamos la leyenda y detenemos el proceso
+        if (nombreCapa === "🗺️ Sin capa temática") {
+          if (leyendaDiv) leyendaDiv.innerHTML = "<h4>Selecciona una capa</h4>";
+          return;
+        }
+
+        // Si es una capa normal, actualizamos la leyenda
+        if (leyendaDiv) {
+          leyendaDiv.innerHTML = `
+            <h4>${nombreCapa}</h4>
+            <div class="legend-row">
+              <i style="background: #132d1e"></i> <span>Alto</span>
+            </div>
+            <div class="legend-row">
+              <i style="background: #6d8f75"></i> <span>Medio</span>
+            </div>
+            <div class="legend-row">
+              <i style="background: #b8c9b0"></i> <span>Bajo</span>
+            </div>
+          `;
+        }
+
+        // Petición a la base de datos (Lazy Loading)
+        if (
+          grupoSeleccionado.urlDeDatos &&
+          !grupoSeleccionado.datosYaCargados
+        ) {
+          fetch(grupoSeleccionado.urlDeDatos)
+            .then((r) => (r.ok ? r.json() : null))
+            .then((data) => {
+              if (!data) return;
+
+              L.geoJSON(data, {
+                style: (f) => ({
+                  fillColor:
+                    typeof getColor === "function"
+                      ? getColor(
+                          f.properties[grupoSeleccionado.propiedadValor],
+                          nombreCapa,
+                        )
+                      : "#d7c986",
+                  weight: 1.5,
+                  color: "white",
+                  fillOpacity: 0.7,
+                }),
+                onEachFeature: (f, l) => {
+                  let val = f.properties[grupoSeleccionado.propiedadValor];
+                  let txt =
+                    nombreCapa === "Carencia vivienda"
+                      ? `${Number(val).toLocaleString()} personas`
+                      : `${Number(val).toFixed(2)}%`;
+                  const nombreMunicipio =
+                    f.properties.NOMGEO || f.properties.nomgeo || "Municipio";
+                  l.bindTooltip(
+                    `<b>${nombreMunicipio}</b><br>${txt} de ${nombreCapa}`,
+                    { sticky: true },
+                  );
+                },
+              }).addTo(grupoSeleccionado);
+
+              grupoSeleccionado.datosYaCargados = true;
+            })
+            .catch((err) => console.error("Error al obtener la capa:", err));
+        }
+      });
 
       capasYaCargadas = true;
     }
   }
 
-  // =================================================================
-  // B. ACTUALIZACIÓN DE DATOS (SE EJECUTA SIEMPRE QUE CAMBIAS DE REGIÓN)
-  // =================================================================
-
-  // 1. Limpiamos los pines y polígonos resaltados de la región anterior
+  // --- B. ACTUALIZACIÓN E INTERACTIVIDAD ---
   marcadoresActivos.clearLayers();
-  if (capaMunicipiosActiva) {
-    mapaRegional.removeLayer(capaMunicipiosActiva);
+  if (capaMunicipiosActiva) mapaRegional.removeLayer(capaMunicipiosActiva);
+
+  let config = {};
+  if (region === "sur") {
+    config = {
+      municipios: [
+        "Atlacomulco",
+        "Tenancingo",
+        "Temascaltepec",
+        "Tianguistenco",
+      ],
+      centro: [19.15, -99.7],
+      zoom: 9,
+      sedes: sedesSur,
+      oferta: ofertaSur,
+    };
+  } else if (region === "valle") {
+    config = {
+      municipios: [
+        "Ecatepec",
+        "Atizapán",
+        "Teotihuacán",
+        "Axapusco",
+        "Zumpango",
+        "Acolman",
+        "Cuautitlán",
+        "Huehuetoca",
+        "Tlalnepantla",
+      ],
+      centro: [19.65, -99.1],
+      zoom: 10,
+      sedes: sedesValle,
+      oferta: ofertaValle,
+    };
+  } else {
+    config = {
+      municipios: [
+        "Amecameca",
+        "Texcoco",
+        "Valle de Chalco Solidaridad",
+        "Nezahualcóyotl",
+        "Chimalhuacán",
+      ],
+      centro: [19.35, -98.95],
+      zoom: 10,
+      sedes: sedesOriente,
+      oferta: ofertaOriente,
+    };
   }
 
-  // 2. Definimos qué datos usar dependiendo de si es "sur" u "oriente"
-  const config = {
-    municipios:
-      region === "sur"
-        ? ["Atlacomulco", "Tenancingo", "Temascaltepec", "Tianguistenco"]
-        : [
-            "Amecameca",
-            "Texcoco",
-            "Valle de Chalco Solidaridad",
-            "Nezahualcóyotl",
-            "Chimalhuacán",
-          ],
-    centro: region === "sur" ? [19.15, -99.7] : [19.35, -98.95],
-    zoom: region === "sur" ? 9 : 10,
-    sedes: region === "sur" ? sedesSur : sedesOriente,
-    oferta: region === "sur" ? ofertaSur : ofertaOriente,
-  };
-
-  // 3. Movemos la cámara a la nueva región
   mapaRegional.flyTo(config.centro, config.zoom);
-  const listaNorm = config.municipios.map((m) => norm(m));
 
-  // 4. Dibujamos SOLO los municipios de la nueva región (Capa superior oscura)
   capaMunicipiosActiva = L.geoJSON(datosMunicipios, {
     style: function (feature) {
-      const esSeleccionado = listaNorm.includes(
-        norm(feature.properties.NOMGEO),
+      const geoNorm = norm(
+        feature.properties.NOMGEO || feature.properties.nomgeo,
       );
-
+      const esSeleccionado = config.municipios.some((m) =>
+        geoNorm.includes(norm(m)),
+      );
       return {
         fillColor: esSeleccionado ? "#848482" : "transparent",
         weight: esSeleccionado ? 2 : 0,
@@ -676,7 +944,6 @@ function cargarMapaRegion(region) {
         fillOpacity: esSeleccionado ? 0.9 : 0,
       };
     },
-
     onEachFeature: function (feature, layer) {
       layer.defaultStyle = {
         fillColor: "#848482",
@@ -686,60 +953,73 @@ function cargarMapaRegion(region) {
       };
     },
   }).addTo(mapaRegional);
-  // 5. Agregamos los nuevos marcadores (pines)
+
+  const sedesYaDibujadas = new Set();
   config.oferta.forEach((item) => {
     const sede = config.sedes.find((s) => s.space === item.space);
-    if (sede) {
+    if (sede && !sedesYaDibujadas.has(sede.name)) {
+      sedesYaDibujadas.add(sede.name);
       L.marker(sede.loc)
-        .bindPopup(`<b>${sede.name}</b><br>${item.area}`)
+        .bindPopup(`<b>${sede.name}</b>`)
         .addTo(marcadoresActivos);
     }
   });
 
-  // 6. Regeneramos el menú dinámico superior (Salud, Derecho, etc.) para la nueva región
   generarMenuRegional(region);
 
-  // EVENTOS PARA RESALTAR MUNICIPIOS
   setTimeout(() => {
     document.querySelectorAll(".area-btn").forEach((btn) => {
-      // CUANDO PASAS EL CURSOR
       btn.addEventListener("mouseenter", () => {
-        const areaSeleccionada = btn.dataset.area;
-
-        resaltarMunicipiosPorArea(areaSeleccionada);
+        resaltarMunicipiosPorArea(btn.dataset.area);
       });
-
-      // CUANDO SALES DEL CURSOR
       btn.addEventListener("mouseleave", () => {
-        if (window.capaHighlightArea) {
+        if (window.capaHighlightArea)
           mapaRegional.removeLayer(window.capaHighlightArea);
-        }
       });
     });
   }, 100);
 
-  // =====================================================
-  // RESALTAR MUNICIPIOS SEGÚN ÁREA
-  // =====================================================
   function resaltarMunicipiosPorArea(areaSeleccionada) {
-    const datos = regionActual === "sur" ? ofertaSur : ofertaOriente;
-
-    // Sacamos municipios que pertenecen al área
+    let datos =
+      regionActual === "sur"
+        ? ofertaSur
+        : regionActual === "valle"
+          ? ofertaValle
+          : ofertaOriente;
     const municipiosArea = datos
       .filter((item) => item.area === areaSeleccionada)
       .map((item) => norm(item.space));
 
-    // Quitamos capa anterior
-    if (window.capaHighlightArea) {
+    if (window.capaHighlightArea)
       mapaRegional.removeLayer(window.capaHighlightArea);
-    }
 
-    // Creamos nueva capa resaltada
+    const mapeoValleGeo = {
+      ecatepec: ["ecatepec"],
+      "valle de mexico": ["atizapan"],
+      teotihuacan: ["teotihuacan", "axapusco"],
+      zumpango: ["zumpango"],
+      acolman: ["acolman"],
+      cuautitlan: ["cuautitlan"],
+      huehuetoca: ["huehuetoca"],
+      tlalnepantla: ["tlalnepantla"],
+    };
+
     window.capaHighlightArea = L.geoJSON(datosMunicipios, {
       style: (feature) => {
-        const nombre = norm(feature.properties.NOMGEO);
-
-        const activo = municipiosArea.includes(nombre);
+        const geoNorm = norm(
+          feature.properties.NOMGEO || feature.properties.nomgeo,
+        );
+        let activo = false;
+        if (regionActual === "valle") {
+          activo = municipiosArea.some((spaceNorm) => {
+            const palabrasClave = mapeoValleGeo[spaceNorm] || [spaceNorm];
+            return palabrasClave.some((palabra) => geoNorm.includes(palabra));
+          });
+        } else {
+          activo = municipiosArea.some((spaceNorm) =>
+            geoNorm.includes(spaceNorm),
+          );
+        }
 
         return {
           fillColor: activo ? "#0f766e" : "transparent",
@@ -751,12 +1031,8 @@ function cargarMapaRegion(region) {
     }).addTo(mapaRegional);
   }
 
-  console.log(municipiosArea);
-
-  // 7. Despertamos el mapa para evitar errores gráficos
+  // Dejamos un resguardo secundario del tamaño por si las animaciones tardan
   setTimeout(() => {
-    if (mapaRegional) {
-      mapaRegional.invalidateSize();
-    }
+    if (mapaRegional) mapaRegional.invalidateSize();
   }, 500);
 }
