@@ -1,0 +1,1820 @@
+/* ====================== VISUALIZADOR DE NECESIDADES ====================== */
+
+#necesidades .dashboard {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+#necesidades .dashboard-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#necesidades #titulo-visualizador {
+  font-size: 2.2rem;
+  color: #134a2c;
+  margin: 0;
+  font-weight: 550;
+}
+
+/* Contenedor principal */
+#necesidades .dashboard-content {
+  display: flex;
+  gap: 20px;
+  height: 78vh; /* Ajusta según necesites */
+  min-height: 650px;
+}
+
+/* MAPA - 80% del espacio */
+#necesidades .dashboard-mapa {
+  flex: 4; /* Más espacio para el mapa */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  background: #fff;
+}
+
+#mapa-necesidades {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
+
+/* Control de capas de Leaflet */
+#panel-capas .leaflet-control-layers {
+  width: 100%;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+#panel-capas .leaflet-control-layers-toggle {
+  display: none;
+}
+
+#panel-capas .leaflet-control-layers-list {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+/* Botón volver */
+#necesidades .btn-home {
+  margin: 25px auto 0;
+  display: block;
+}
+
+/* Contenedor de la leyenda */
+.legend {
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  min-width: 140px; /* Asegura un ancho mínimo para que no se corte el texto */
+}
+
+.legend h4 {
+  margin: 0 0 10px 0;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* Cada fila de la leyenda (Icono + Texto) */
+.legend-row {
+  display: flex; /* Alinea icono y texto en línea */
+  align-items: center; /* Los centra verticalmente */
+  margin-bottom: 6px; /* Espacio entre filas */
+  font-size: 0.9rem;
+}
+
+/* El cuadro de color */
+.legend-row i {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px; /* Espacio entre el cuadro y el texto */
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  display: inline-block;
+}
+
+.legend-row i {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* ====================== REGIONES====================== */
+
+/* ======================================
+   MENU PRINCIPAL
+====================================== */
+
+.menu-oferta {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  list-style: none;
+  padding: 0;
+  margin: 25px 0;
+  position: relative;
+  z-index: 9999;
+}
+
+/* ======================================
+   ÁREAS
+====================================== */
+
+.menu-area {
+  position: relative;
+}
+.menu-area-title {
+  color: #2f3a2f;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+  padding: 8px 0;
+}
+
+.menu-area-title:hover {
+  color: #b08b3e;
+}
+
+/* ======================================
+   MUNICIPIOS
+====================================== */
+
+.menu-municipios {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding-top: 8px;
+  min-width: 220px;
+  list-style: none;
+  z-index: 99999;
+}
+
+.menu-area:hover > .menu-municipios {
+  display: block;
+}
+
+/* ======================================
+   MUNICIPIO ITEM
+====================================== */
+
+.menu-municipio {
+  position: relative;
+  padding: 6px 0;
+}
+
+.menu-municipio-title {
+  color: #4d5a4d;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  white-space: nowrap;
+}
+
+.menu-municipio-title:hover {
+  color: #b08b3e;
+  transform: translateX(3px);
+}
+
+/* ======================================
+   CARRERAS
+====================================== */
+
+.menu-carreras {
+  display: none;
+  position: absolute;
+  top: -5px;
+  left: 90%;
+  padding-left: 5px;
+  min-width: 280px;
+  list-style: none;
+  z-index: 99999;
+}
+
+.menu-municipio:hover > .menu-carreras {
+  display: block;
+}
+
+/* ======================================
+   ITEMS CARRERAS
+====================================== */
+
+.menu-carreras li {
+  color: #687768;
+  font-size: 14px;
+  padding: 6px 0;
+  cursor: pointer;
+  transition: 0.2s ease;
+  white-space: nowrap;
+}
+
+.menu-carreras li:hover {
+  color: #b08b3e;
+  transform: translateX(3px);
+}
+
+/* ======================================
+   MINI VISUALIZADOR OFERTA
+====================================== */
+
+.oferta-dashboard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* MAPA */
+
+/* PANEL LATERAL */
+
+.mini-panel-oferta {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 230px;
+  max-height: 85%;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 16px;
+  z-index: 999;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* TITULOS */
+
+.mini-panel-oferta h4 {
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #134a2c;
+  font-weight: 700;
+}
+
+/* ITEMS CAPAS */
+
+.capa-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: #3d3d3d;
+}
+
+/* LEYENDA */
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.legend-color {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+}
+
+/* ESTILO MAPA */
+
+.leaflet-tile-pane {
+  filter: saturate(0.75) brightness(1.02) contrast(0.95);
+}
+
+/* POPUPS */
+
+.leaflet-popup-content-wrapper {
+  border-radius: 14px;
+}
+
+.leaflet-popup-content {
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+}
+
+/* =========================================================
+   ESTILOS CLONADOS PARA LA REGIÓN SUR (Igual a Oriente)
+   ========================================================= */
+
+/* 3. Leyenda dinámica nativa del Sur (Mismo diseño que el visualizador principal) */
+#leyenda-dinamica-sur {
+  background: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  font-family: "DM Sans", sans-serif;
+  color: #333;
+}
+
+#leyenda-dinamica-sur h4 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: #134a2c;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+/* =====================================================
+   OFERTA REGIONAL
+===================================================== */
+
+.oferta-wrapper {
+  width: 98%;
+  max-width: 1800px;
+  height: 88vh;
+  min-height: 820px;
+  margin: 15px auto 30px auto;
+}
+
+/* CONTENEDOR GENERAL */
+.oferta-dashboard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 22px;
+  background: white;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* MAPA */
+#mapa-reutilizable {
+  width: 100%;
+  height: 100%;
+  min-height: 820px;
+  z-index: 1;
+}
+
+/* ==================================================
+   CONTROL DE CAPAS / SIMBOLOGÍA
+================================================== */
+
+.leaflet-control-container .leaflet-top,
+.leaflet-control-container .leaflet-right {
+  z-index: 99999 !important;
+}
+
+.leaflet-control-layers {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-radius: 10px !important;
+  padding: 10px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  font-family: "DM Sans", sans-serif !important;
+}
+
+#leyenda-container-regional {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99999;
+}
+
+/* ==================================================
+   CONTROL de Fichas
+================================================== */
+
+/* =========================================================
+   VISTA POR DEFECTO (IMÁGENES COMPACTAS A MITAD DE PANTALLA)
+   ========================================================= */
+
+.default-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px 0 50px 0;
+}
+
+/* Contenedor principal que ocupa buen porcentaje de la pantalla */
+.default-images-container {
+  display: flex;
+  flex-direction: row; /* Lado a lado */
+  justify-content: center;
+  align-items: stretch; /* Hace que ambas columnas tengan la misma altura base */
+  gap: 60px; /* Separación amplia y elegante entre las dos regiones */
+  width: 95%; /* Aprovecha casi todo el ancho disponible */
+  max-width: 1200px; /* Tope para que no se deforme en pantallas gigantes */
+  margin: 0 auto;
+}
+
+/* Cada bloque es exactamente igual al otro (50% / 50%) */
+.default-image-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px; /* Espacio entre el título y la imagen */
+}
+
+/* Las imágenes grandes y simétricas */
+.default-image-card img {
+  width: 100%; /* Toma todo el ancho de su mitad de pantalla */
+  max-height: 700px; /* Altura generosa. Puedes subirle a 450px o bajarle a 350px si lo ves necesario */
+  object-fit: contain; /* IMPORTANTE: 'contain' evita que se corten textos o pedazos de tu mapa */
+  background-color: #fbfbfb; /* Fondo tenue por si la imagen tiene un formato diferente */
+  border-radius: 12px; /* Bordes suaves */
+}
+
+/* Efecto al pasar el mouse */
+.default-image-card img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================================================
+   MENÚ MINIMALISTA SITUACIÓN REGIONAL
+   ========================================================= */
+
+.dashboard-main-title {
+  text-align: center;
+  color: #134a2c;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Contenedor centralizado para los dos títulos */
+.menu-minimalista-container {
+  display: flex;
+  justify-content: center;
+  gap: 80px; /* Separación entre Oriente y Sur */
+  margin-bottom: 30px;
+}
+
+/* Cada bloque (Título + Lista) */
+.menu-minimalista-item {
+  position: relative; /* Clave para que la lista flote debajo de este texto */
+  display: inline-block;
+}
+
+/* El texto principal ("Región Oriente ▼") */
+.menu-minimalista-titulo {
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  padding-bottom: 15px; /* Espacio invisible para no perder el hover al bajar el mouse */
+  display: block;
+}
+
+.menu-minimalista-titulo small {
+  font-size: 10px;
+  color: #888;
+  margin-left: 5px;
+}
+
+/* La lista desplegable oculta por defecto */
+.menu-minimalista-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%; /* Justo debajo del texto */
+  left: 0;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08); /* Sombra muy suave y limpia */
+  padding: 10px 0;
+  margin: 0;
+  list-style: none;
+  z-index: 999; /* Asegura que flote sobre la imagen */
+  border-radius: 4px;
+}
+
+/* Magia: Mostrar la lista al pasar el mouse por el contenedor */
+.menu-minimalista-item:hover .menu-minimalista-dropdown {
+  display: block;
+}
+
+/* Estilo de los municipios (Limpio y sin cajas pesadas) */
+.menu-minimalista-dropdown li {
+  color: #000000; /* Color sutil azulado */
+  padding: 8px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Al pasar el mouse por un municipio */
+.menu-minimalista-dropdown li:hover {
+  background-color: #fcfcfc;
+  color: #000000; /* Dorado institucional al hacer hover */
+}
+
+/* Botones de pasar imagenes de las fichas */
+.controles-ficha {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.controles-ficha button {
+  background: #134a2c;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  font-size: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.controles-ficha button:hover {
+  background: #1d6b42;
+}
+
+/* =========================================
+   ESTILOS PARA MAPA DE INCUBADORAS
+   ========================================= */
+#incubadoras .geo-wrapper {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  width: 100%;
+  height: auto !important;
+}
+
+#map-incubadoras {
+  width: 80% !important;
+  max-width: 1000px;
+  height: 70vh !important;
+  min-height: 650px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
+/* =========================================
+   ESTILOS PARA SIMBOLOGÍA (LEYENDA ULTRA LIMPIA)
+   ========================================= */
+.legend-incubadoras {
+  font-family: "DM Sans", sans-serif;
+  font-size: 11.5px; /* TAREA 2: Letra considerablemente más pequeña */
+  line-height: 1.35;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.legend-inc-main {
+  padding: 2px;
+  margin-bottom: 4px;
+  max-width: 250px; /* Se comprime más para no estorbar el mapa */
+}
+
+.legend-inc-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-weight: 700;
+}
+
+.legend-inc-list li {
+  margin-bottom: 1.5px; /* Menos espacio entre renglones */
+}
+
+.text-gold {
+  color: #b3975d;
+}
+
+.text-green {
+  color: #134a2c;
+}
+
+.text-light {
+  font-weight: 400;
+  color: #666666;
+}
+
+.legend-inc-note {
+  padding: 2px;
+  font-size: 11px;
+  max-width: 200px; /* Reducción de ancho */
+}
+
+/* =========================================
+   ESTILOS PARA MAPAS (TAMAÑOS INDEPENDIENTES)
+   ========================================= */
+#emprendimiento .geo-wrapper {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  width: 100%;
+  height: auto !important;
+}
+
+/* Mapa de Emprendimiento MENOS ANCHO */
+#map-emprendimiento {
+  width: 70% !important; /* Reducido del 90% al 70% */
+  max-width: 900px; /* Límite máximo más angosto */
+  height: 60vh !important; /* Un poco menos alto para que luzca proporcionado */
+  min-height: 600px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin: 90px auto 0px auto !important;
+}
+
+/* =========================================
+   ESTILOS PARA MAPA EMPRENDIMIENTO (INFORMACIÓN OPACA)
+   ========================================= */
+.tooltip-emprendimiento {
+  /* Fondo blanco semi-transparente (90% opaco) */
+  background: rgba(255, 255, 255, 0.9) !important;
+  /* Borde muy sutil para delimitar el cuadro */
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  /* Sombra elegante tipo tarjeta flotante */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12) !important;
+  border-radius: 10px !important;
+  padding: 10px 15px !important; /* Aire alrededor del texto */
+  backdrop-filter: blur(5px); /* Efecto de cristal esmerilado en el fondo */
+}
+
+/* Ocultar la flechita/triángulo por defecto de Leaflet */
+.tooltip-emprendimiento::before {
+  display: none !important;
+}
+
+/* =========================================================
+   FORZAR MENÚ DE CAPAS SIEMPRE DESPLEGADO (ANTI-BUG LEAFLET)
+   ========================================================= */
+
+/* 1. Ocultar para siempre el ícono de la bolita */
+.leaflet-control-layers-toggle {
+  display: none !important;
+}
+
+/* 2. Forzar que la lista de capas siempre esté visible */
+.leaflet-control-layers-list {
+  display: block !important;
+  position: relative !important;
+}
+
+/* 3. Darle un fondo blanco y formato para que se vea bien como panel fijo */
+.leaflet-control-layers {
+  background-color: white !important;
+  padding: 10px 12px !important;
+  border-radius: 5px !important;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4) !important;
+  border: 2px solid rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ====================== EQUIPAMIENTO PARA LA CULTURA ====================== */
+
+#cultura {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+#cultura h2 {
+  margin-bottom: 20px;
+}
+
+.cultura-filtros {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+
+.btn-filtro-cultura {
+  border: 1px solid #134a2c;
+  background: #ffffff;
+  color: #134a2c;
+  padding: 10px 24px;
+  border-radius: 25px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-filtro-cultura:hover {
+  background: #eef4ef;
+}
+
+.btn-filtro-cultura.active {
+  background: #134a2c;
+  color: #ffffff;
+}
+
+.contador-cultura {
+  text-align: center;
+  color: #687768;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+
+.cultura-map-container {
+  width: 100%;
+  height: 650px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.14);
+}
+
+#map-cultura {
+  width: 100%;
+  height: 100%;
+}
+
+.cultura-popup {
+  min-width: 260px;
+  max-width: 340px;
+  font-family: "DM Sans", sans-serif;
+}
+
+.cultura-popup-direccion {
+  padding-bottom: 10px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #dddddd;
+  color: #555555;
+  line-height: 1.4;
+}
+
+.cultura-popup-lista {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.cultura-popup-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 9px 2px;
+  border-bottom: 1px dotted #cccccc;
+}
+
+.cultura-popup-item:last-child {
+  border-bottom: none;
+}
+
+.cultura-popup-item strong {
+  color: #134a2c;
+  font-size: 0.93rem;
+  line-height: 1.3;
+}
+
+.cultura-popup-item span {
+  color: #8b6e32;
+  font-size: 0.82rem;
+}
+
+@media (max-width: 768px) {
+  .cultura-map-container {
+    height: 550px;
+  }
+
+  .cultura-filtros {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-filtro-cultura {
+    width: 220px;
+  }
+}
+
+/* =========================================================
+   EMPRENDIMIENTO E INCUBADORAS
+   MENÚ LATERAL | MAPA | RESULTADOS
+   ========================================================= */
+
+#emprendimiento .modulo-emprendimiento-layout,
+#incubadoras .modulo-emprendimiento-layout {
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+/* Mapa 60 % y resultados 40 % */
+#emprendimiento .modulo-mapa-lista,
+#incubadoras .modulo-mapa-lista {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(310px, 2fr);
+  gap: 30px;
+  width: 100%;
+  height: 600px;
+  min-height: 600px;
+}
+
+/* Sobrescribe los tamaños anteriores */
+#emprendimiento #map-emprendimiento,
+#incubadoras #map-incubadoras {
+  width: 100% !important;
+  max-width: none !important;
+  height: 600px !important;
+  min-height: 600px !important;
+  margin: 0 !important;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Panel derecho */
+.modulo-resultados {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 600px;
+  overflow: hidden;
+  padding-right: 8px;
+}
+
+.modulo-resultados-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 4px 0 14px;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.modulo-resultados-header h3 {
+  margin: 0;
+  color: #134a2c;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.modulo-resultados-header span {
+  color: #8b6e32;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.modulo-resultados-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+}
+
+/* Scroll */
+.modulo-resultados-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modulo-resultados-scroll::-webkit-scrollbar-thumb {
+  background: #cccccc;
+  border-radius: 10px;
+}
+
+.modulo-resultados-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Resultados de emprendimiento */
+.resultado-emprendimiento {
+  padding: 15px 4px;
+  border-bottom: 1px dotted #cccccc;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    padding-left 0.2s ease;
+}
+
+.resultado-emprendimiento:hover {
+  background-color: #f8faf8;
+  padding-left: 8px;
+}
+
+.resultado-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.resultado-encabezado h4 {
+  margin: 0;
+  color: #222222;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.resultado-encabezado span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 25px;
+  height: 25px;
+  padding: 0 5px;
+  border-radius: 50%;
+  background: #f2eee5;
+  color: #8b6e32;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.resultado-emprendimiento ul,
+.popup-emprendimiento ul {
+  margin: 9px 0 0;
+  padding-left: 20px;
+  list-style: disc;
+}
+
+.resultado-emprendimiento li,
+.popup-emprendimiento li {
+  margin-bottom: 5px;
+  color: #666666;
+  font-size: 0.86rem;
+  line-height: 1.4;
+}
+
+/* Resultados de incubadoras */
+.resultado-incubadora {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 15px 4px;
+  border-bottom: 1px dotted #cccccc;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    padding-left 0.2s ease;
+}
+
+.resultado-incubadora:hover {
+  background-color: #f8faf8;
+  padding-left: 8px;
+}
+
+.resultado-incubadora h4 {
+  margin: 0 0 4px;
+  color: #222222;
+  font-size: 0.96rem;
+}
+
+.resultado-incubadora p {
+  margin: 0;
+  color: #777777;
+  font-size: 0.82rem;
+}
+
+.punto-incubadora {
+  width: 13px;
+  height: 13px;
+  margin-top: 4px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.punto-incubadora.con-albergue {
+  background-color: #b3975d;
+}
+
+.punto-incubadora.sin-albergue {
+  background-color: #134a2c;
+}
+
+.sin-resultados {
+  padding: 30px 10px;
+  color: #888888;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Popup de emprendimiento */
+.popup-emprendimiento {
+  min-width: 220px;
+  max-width: 310px;
+  font-family: "DM Sans", sans-serif;
+}
+
+.popup-emprendimiento strong {
+  color: #134a2c;
+  font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 1050px) {
+  #emprendimiento .modulo-emprendimiento-layout,
+  #incubadoras .modulo-emprendimiento-layout {
+    grid-template-columns: 1fr;
+  }
+
+  #emprendimiento .inv-sidebar,
+  #incubadoras .inv-sidebar {
+    max-height: none !important;
+    border-right: none;
+    border-bottom: 1px solid #e4e4e4;
+    padding-bottom: 20px;
+  }
+
+  #emprendimiento .modulo-mapa-lista,
+  #incubadoras .modulo-mapa-lista {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 0;
+  }
+
+  #emprendimiento #map-emprendimiento,
+  #incubadoras #map-incubadoras {
+    height: 500px !important;
+    min-height: 500px !important;
+  }
+
+  .modulo-resultados {
+    height: 400px;
+  }
+}
+
+@media (max-width: 650px) {
+  #emprendimiento #map-emprendimiento,
+  #incubadoras #map-incubadoras {
+    height: 420px !important;
+    min-height: 420px !important;
+  }
+
+  #emprendimiento .uniform-search,
+  #incubadoras .uniform-search {
+    flex-direction: column;
+  }
+}
+
+/* =========================================================
+   CONTADORES DE LOS FILTROS LATERALES
+   ========================================================= */
+
+.filter-count-box {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 5px 0 12px;
+  padding: 9px 12px;
+  background-color: #f3f3f3;
+  border-left: 3px solid #b3975d;
+  color: #444444;
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.filter-count-box strong {
+  color: #333333;
+  font-weight: 700;
+}
+
+/* Ya no hay círculo numérico en emprendimiento */
+#emprendimiento .resultado-encabezado {
+  display: block;
+}
+
+#emprendimiento .resultado-encabezado span {
+  display: none;
+}
+
+/* Ya no hay círculo de color en incubadoras */
+#incubadoras .resultado-incubadora {
+  display: block;
+  padding: 15px 4px;
+}
+
+#incubadoras .punto-incubadora {
+  display: none;
+}
+
+/* Complemento exclusivo de Toluca */
+.detalle-toluca {
+  margin-top: 10px;
+  padding: 10px 12px;
+  background-color: #f7f7f7;
+  border-left: 3px solid #b3975d;
+}
+
+.detalle-toluca strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #134a2c;
+  font-size: 0.82rem;
+}
+
+.detalle-toluca ul {
+  margin: 0;
+  padding-left: 18px;
+  list-style: disc;
+}
+
+.detalle-toluca li {
+  margin-bottom: 4px;
+  color: #666666;
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.detalle-toluca-nota {
+  display: block;
+  margin-top: 6px;
+  color: #9b7a39;
+  font-size: 0.72rem;
+  font-style: italic;
+}
+
+/* =========================================================
+   EQUIPAMIENTO PARA LA CULTURA
+   FILTROS | MAPA | LISTA DE RESULTADOS
+   ========================================================= */
+
+#cultura {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+#cultura h2 {
+  margin-bottom: 40px;
+}
+
+/* Menú lateral y contenido principal */
+#cultura .modulo-cultura-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+/* Mapa 60 % y lista 40 % */
+#cultura .cultura-mapa-lista {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 3fr)
+    minmax(310px, 2fr);
+  gap: 30px;
+  width: 100%;
+  height: 600px;
+  min-height: 600px;
+}
+
+/* Mapa */
+#cultura #map-cultura {
+  width: 100% !important;
+  max-width: none !important;
+  height: 600px !important;
+  min-height: 600px !important;
+  margin: 0 !important;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Caja de cantidad debajo del filtro activo */
+#cultura .filter-count-box {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 5px 0 12px;
+  padding: 9px 12px;
+  background-color: #f3f3f3;
+  border-left: 3px solid #b3975d;
+  color: #444444;
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+#cultura .filter-count-box strong {
+  color: #333333;
+  font-weight: 700;
+}
+
+/* Lista derecha */
+#cultura .modulo-resultados {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 600px;
+  overflow: hidden;
+  padding-right: 8px;
+}
+
+#cultura .modulo-resultados-header {
+  display: flex;
+  align-items: center;
+  padding: 4px 0 14px;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+#cultura .modulo-resultados-header h3 {
+  margin: 0;
+  color: #134a2c;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+#cultura .modulo-resultados-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+}
+
+#cultura .modulo-resultados-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+#cultura .modulo-resultados-scroll::-webkit-scrollbar-thumb {
+  background-color: #cccccc;
+  border-radius: 10px;
+}
+
+#cultura .modulo-resultados-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Cada espacio cultural */
+.resultado-cultura {
+  padding: 15px 4px;
+  border-bottom: 1px dotted #cccccc;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    padding-left 0.2s ease;
+}
+
+.resultado-cultura:hover {
+  padding-left: 8px;
+  background-color: #f8faf8;
+}
+
+.resultado-cultura-superior {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.resultado-cultura-categoria {
+  color: #b3975d;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.resultado-cultura-ciudad {
+  color: #888888;
+  font-size: 0.74rem;
+  text-align: right;
+}
+
+.resultado-cultura h4 {
+  margin: 0 0 7px;
+  color: #222222;
+  font-size: 0.96rem;
+  line-height: 1.4;
+}
+
+.resultado-cultura p {
+  margin: 0;
+  color: #6f6f6f;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+/* Mensaje sin resultados */
+#cultura .sin-resultados {
+  padding: 30px 10px;
+  color: #888888;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* =========================================================
+   MARCADOR AZUL AGRUPADO PARA CULTURA
+   ========================================================= */
+/* Marcador azul agrupado para Cultura */
+.marcador-cultura-agrupado {
+  width: 40px !important;
+  height: 52px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.marcador-cultura-agrupado svg {
+  display: block;
+  width: 30px;
+  height: 42px;
+  overflow: visible;
+  filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, 0.35));
+}
+
+/* Popup */
+.cultura-popup {
+  min-width: 260px;
+  max-width: 340px;
+  font-family: "DM Sans", sans-serif;
+}
+
+.cultura-popup-direccion {
+  padding-bottom: 10px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #dddddd;
+  color: #555555;
+  line-height: 1.4;
+}
+
+.cultura-popup-cantidad {
+  margin-bottom: 8px;
+  color: #777777;
+  font-size: 0.82rem;
+}
+
+.cultura-popup-lista {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.cultura-popup-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 9px 2px;
+  border-bottom: 1px dotted #cccccc;
+}
+
+.cultura-popup-item:last-child {
+  border-bottom: none;
+}
+
+.cultura-popup-item strong {
+  color: #134a2c;
+  font-size: 0.93rem;
+  line-height: 1.3;
+}
+
+.cultura-popup-item span {
+  color: #8b6e32;
+  font-size: 0.82rem;
+}
+
+/* Responsive */
+@media (max-width: 1050px) {
+  #cultura .modulo-cultura-layout {
+    grid-template-columns: 1fr;
+  }
+
+  #cultura .inv-sidebar {
+    max-height: none !important;
+    padding-bottom: 20px;
+    border-right: none;
+    border-bottom: 1px solid #e4e4e4;
+  }
+
+  #cultura .cultura-mapa-lista {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 0;
+  }
+
+  #cultura #map-cultura {
+    height: 500px !important;
+    min-height: 500px !important;
+  }
+
+  #cultura .modulo-resultados {
+    height: 420px;
+  }
+}
+
+@media (max-width: 650px) {
+  #cultura #map-cultura {
+    height: 420px !important;
+    min-height: 420px !important;
+  }
+
+  #cultura .uniform-search {
+    flex-direction: column;
+  }
+
+  .resultado-cultura-superior {
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .resultado-cultura-ciudad {
+    text-align: left;
+  }
+}
+
+/* =========================================================
+   NODOS: PARTICIPACIÓN | MAPA | RESULTADOS
+   ========================================================= */
+
+#digital .nodo-participacion-layout,
+#agua .nodo-participacion-layout,
+#alimenticio .nodo-participacion-layout {
+  display: grid !important;
+  grid-template-columns:
+    220px
+    minmax(0, 1fr)
+    350px !important;
+  gap: 30px !important;
+  align-items: start !important;
+  width: 100% !important;
+  height: 650px !important;
+  min-height: 650px !important;
+  max-height: none !important;
+}
+
+/* ================= FILTROS ================= */
+
+#digital .nodo-filtros-panel,
+#agua .nodo-filtros-panel,
+#alimenticio .nodo-filtros-panel {
+  width: auto !important;
+  height: 650px !important;
+  max-height: 650px !important;
+  box-sizing: border-box;
+  overflow-y: auto;
+  padding: 0 20px 0 0 !important;
+  border-right: 1px solid #e5e5e5;
+}
+
+.nodo-filtros-panel h3 {
+  margin: 0 0 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e8e8e8;
+  color: #b3975d;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.nodo-filter-btn {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 0 5px;
+  padding: 11px 12px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #555555;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.nodo-filter-btn:hover,
+.nodo-filter-btn.active {
+  background-color: #f5f6f5;
+  color: #134a2c;
+}
+
+.nodo-filter-btn.active {
+  font-weight: 700;
+}
+
+.nodo-filter-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.94rem;
+}
+
+.nodo-filter-dot {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 50%;
+  background-color: var(--participacion-color);
+}
+
+.nodo-filter-btn small {
+  display: block;
+  margin: 5px 0 0 23px;
+  color: #8b8b8b;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.nodo-filter-count {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 4px 0 12px;
+  padding: 9px 12px;
+  border-left: 3px solid #b3975d;
+  background-color: #f3f3f3;
+  color: #444444;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.nodo-filter-count strong {
+  color: #333333;
+}
+
+/* ================= MAPA ================= */
+
+#digital .nodo-map-frame,
+#agua .nodo-map-frame,
+#alimenticio .nodo-map-frame {
+  width: 100% !important;
+  height: 650px !important;
+  min-height: 650px !important;
+  margin: 0 !important;
+  overflow: hidden;
+  border: none !important;
+  border-radius: 12px;
+  background-color: #f7f7f7;
+}
+
+/* Marcadores SVG */
+
+.nodo-marker-icon {
+  width: 36px !important;
+  height: 48px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.nodo-marker-icon svg {
+  display: block;
+  width: 36px;
+  height: 48px;
+  overflow: visible;
+  filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, 0.32));
+}
+
+/* ================= RESULTADOS ================= */
+
+#digital .nodo-resultados-panel,
+#agua .nodo-resultados-panel,
+#alimenticio .nodo-resultados-panel {
+  width: auto !important;
+  height: 650px !important;
+  max-height: 650px !important;
+  box-sizing: border-box;
+  overflow: hidden !important;
+  padding: 0 5px 0 0 !important;
+}
+
+.nodo-resultados-panel h3 {
+  margin: 0 !important;
+  padding: 0 0 12px !important;
+  border-bottom: 2px solid #eaeaea !important;
+  color: #333333 !important;
+  font-size: 1.03rem !important;
+  line-height: 1.4;
+}
+
+.nodo-resultados-lista {
+  height: calc(100% - 60px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+}
+
+.nodo-resultados-lista::-webkit-scrollbar {
+  width: 6px;
+}
+
+.nodo-resultados-lista::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #cccccc;
+}
+
+.nodo-resultados-lista::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.nodo-result-item {
+  padding: 15px 4px;
+  border-bottom: 1px dotted #cccccc;
+  cursor: pointer;
+  transition:
+    padding-left 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.nodo-result-item:hover {
+  padding-left: 8px;
+  background-color: #f8faf8;
+}
+
+.nodo-result-superior {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.nodo-result-participacion {
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.nodo-result-nivel {
+  color: #888888;
+  font-size: 0.72rem;
+}
+
+.nodo-result-item h4 {
+  margin: 0 0 7px;
+  color: #222222;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.nodo-result-item p {
+  margin: 0;
+  color: #6f6f6f;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.nodo-result-estado {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 3px 7px;
+  border-radius: 4px;
+  background-color: #eef4f7;
+  color: #5692b8;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.nodo-sin-resultados {
+  padding: 30px 10px;
+  color: #888888;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* ================= POPUP ================= */
+
+.nodo-popup {
+  min-width: 220px;
+  max-width: 310px;
+  font-family: "DM Sans", sans-serif;
+}
+
+.nodo-popup-participacion {
+  margin-bottom: 7px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.nodo-popup-nivel {
+  margin-left: 5px;
+  color: #888888;
+  font-weight: 400;
+  text-transform: none;
+}
+
+.nodo-popup strong {
+  display: block;
+  color: #222222;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+.nodo-popup p {
+  margin: 8px 0 0;
+  color: #666666;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.nodo-popup-estado {
+  display: inline-block;
+  margin-top: 9px;
+  padding: 3px 7px;
+  border-radius: 4px;
+  background-color: #eef4f7;
+  color: #5692b8;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* ================= LEYENDA TEMÁTICA ================= */
+
+.nodo-leyenda-tematica {
+  min-width: 155px;
+  padding: 10px 12px;
+  border: 1px solid #dddddd;
+  border-radius: 7px;
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.14);
+  font-family: "DM Sans", sans-serif;
+}
+
+.nodo-leyenda-tematica h4 {
+  margin: 0 0 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e5e5e5;
+  color: #333333;
+  font-size: 0.77rem;
+  font-weight: 700;
+}
+
+.nodo-leyenda-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  margin: 0;
+  padding: 4px 2px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #666666;
+  text-align: left;
+  cursor: pointer;
+}
+
+.nodo-leyenda-item:hover,
+.nodo-leyenda-item.active {
+  background-color: #f2f2f2;
+  color: #134a2c;
+  font-weight: 700;
+}
+
+.nodo-leyenda-item i {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+}
+
+.nodo-leyenda-item span {
+  font-size: 0.72rem;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1100px) {
+  #digital .nodo-participacion-layout,
+  #agua .nodo-participacion-layout,
+  #alimenticio .nodo-participacion-layout {
+    grid-template-columns: 200px minmax(0, 1fr) !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  #digital .nodo-resultados-panel,
+  #agua .nodo-resultados-panel,
+  #alimenticio .nodo-resultados-panel {
+    grid-column: 1 / -1;
+    height: 400px !important;
+  }
+}
+
+@media (max-width: 750px) {
+  #digital .nodo-participacion-layout,
+  #agua .nodo-participacion-layout,
+  #alimenticio .nodo-participacion-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  #digital .nodo-filtros-panel,
+  #agua .nodo-filtros-panel,
+  #alimenticio .nodo-filtros-panel {
+    height: auto !important;
+    max-height: none !important;
+    padding: 0 0 20px !important;
+    border-right: none;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  #digital .nodo-map-frame,
+  #agua .nodo-map-frame,
+  #alimenticio .nodo-map-frame {
+    height: 480px !important;
+    min-height: 480px !important;
+  }
+
+  #digital .nodo-resultados-panel,
+  #agua .nodo-resultados-panel,
+  #alimenticio .nodo-resultados-panel {
+    grid-column: auto;
+  }
+}
